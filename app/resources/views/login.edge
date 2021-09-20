@@ -12,12 +12,26 @@
     @if(!user)
         <form action="/login" method="POST">
             {{csrfField()}}
+            <label for="email">Email:</label>
+            <input type="text" name="usuario" id="usuario">
+
+            <br />
+            <br />
+
+            <label for="senha">Senha:</label>
+            <input type="text" name="senha" id="senha">
+
+            <br />
+            <br />
+            
             <button type="submit">
                 <span>Login</span>
             </button>
+            <button type="reset">
+                <span>Limpar</span>
+            </button>
         </form>
     @else
-        <h3>Seja bem vindo, {{user}}</h3>
         <form action="/logout" method="POST">
             {{csrfField()}}
             <button type="submit">

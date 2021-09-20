@@ -3,7 +3,7 @@
 class LoginController {
     async index({view, session}) {
         let username = session.get('username')
-        return view.render('index', {user: username})
+        return view.render('login', {user: username})
     }
 
     async login({response, session}) {
