@@ -1,0 +1,1 @@
+1 - Logout - redirecionar para o index ou realizar validação de login em outras telas para redirecionar para o index;
