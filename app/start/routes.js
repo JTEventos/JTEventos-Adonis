@@ -22,3 +22,4 @@ const Route = use('Route')
 Route.get('/', 'LoginController.index');
 Route.post('/login', 'LoginController.login');
 Route.post('/logout', 'LoginController.logout');
+Route.get('/eventos', 'EventoController.listarEventos');

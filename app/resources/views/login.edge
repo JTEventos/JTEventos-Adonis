@@ -1,0 +1,37 @@
+@layout('index')
+
+@section('body')
+    @set('title', 'Login')
+    <h1>Login</h1>
+
+    @if(!user)
+        <form action="/login" method="POST">
+            {{csrfField()}}
+            <label for="usuario">Usuário:</label>
+            <input type="text" name="usuario" id="usuario">
+
+            <br />
+            <br />
+
+            <label for="senha">Senha:</label>
+            <input type="text" name="senha" id="senha">
+
+            <br />
+            <br />
+            
+            <button type="submit">
+                <span>Login</span>
+            </button>
+            <button type="reset">
+                <span>Limpar</span>
+            </button>
+        </form>
+    @else
+        <form action="/logout" method="POST">
+            {{csrfField()}}
+            <button type="submit">
+                <span>Logout</span>
+            </button>
+        </form>  
+    @endif
+@endsection
