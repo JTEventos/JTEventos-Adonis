@@ -19,7 +19,15 @@ const LoginController = require('../app/Controllers/Http/LoginController');
 const Route = use('Route')
 
 //Route.on('/').render('welcome')
-Route.get('/', 'LoginController.index');
-Route.post('/login', 'LoginController.login');
-Route.post('/logout', 'LoginController.logout');
-Route.get('/eventos', 'EventoController.listarEventos');
+//Login
+Route.get('/', 'LoginController.index')
+Route.post('/login', 'LoginController.login')
+Route.post('/logout', 'LoginController.logout')
+
+//Evento
+Route.get('/eventos', 'EventoController.listarEventos')
+
+//Código de erro
+Route.get('/401', 'ErrorController.401')
+Route.get('/404', 'ErrorController.404')
+

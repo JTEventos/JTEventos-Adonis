@@ -12,28 +12,34 @@ class LoginController {
         const usuario = new Usuario;
         usuario.usuario = request.input('usuario')
         usuario.senha = request.input('senha')
+        usuario.nome = 'Administrador'
 
-        console.log(usuario.usuario)
-        console.log(usuario.senha)
+        //console.log(usuario.usuario)
+        //console.log(usuario.senha)
 
         if (usuario.usuario == "admin" && usuario.senha == "12345") {
             console.log("Logado com sucesso!")
-            response.redirect('/eventos')
+            session.put('nome', usuario.nome)
+            session.put('logado', true)
+            return response.redirect('/eventos')
         } else {
-            console.log("Usuário ou senha inválidos")
+            session.flash({
+                notificacao: "Usuário ou senha inválidos!"
+            })
+            return response.redirect('back')
         }
-
-
-        //session.put('usuario', 'Fulano')
-        //response.redirect('back')
     }
 
     async logout({response, session}) {
-        let usuario = session.get('usuario')
-        if (usuario) {
-            session.clear();
+        session.clear()
+        response.redirect('/')
+    }
+
+    static logado(session, response) {
+        const logado = session.get('logado')
+        if (!logado) {
+            return response.status(401).redirect('/401')
         }
-        response.redirect('back')
     }
 }
 
