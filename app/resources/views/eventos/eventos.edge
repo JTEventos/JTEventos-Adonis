@@ -1,0 +1,31 @@
+@layout('./layouts/index')
+@section('body')
+    <h1>Eventos</h1>
+    @if(eventos && eventos.length > 0) 
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Nome</th>
+                <th>Data Início</th>
+                <th>Data Fim</th>
+                <th>Ações</th>
+            </thead>
+            @each(evento in eventos)
+            <tr>
+                <td>{{ evento.id }}</td>
+                <td>{{ evento.id_cliente }}</td>
+                <td>{{ evento.nome_evento }}</td>
+                <td>{{ evento.data_inicio }}</td>
+                <td>{{ evento.data_fim }}</td>
+                <td>
+                    <button class="button is-link is-small">Alterar</button>
+                    <button class="button is-link is-small">Deletar</button>
+                </td>
+            </tr>
+            @endeach
+        </table>
+    @else
+        
+    @endif
+@endsection
