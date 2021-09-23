@@ -1,15 +1,17 @@
 'use strict'
 
-const LoginController = require('./LoginController')
+const LoginController = use('App/Controllers/Http/LoginController')
+const Evento = use('App/Models/Evento')
 
 class EventoController {
     
-    async listarEventos({view, session, response}) {
+    async index({view, session, response}) {
         LoginController.logado(session, response)
         
-        return view.render('evento')
-    }
+        const eventos = await Evento.all();
 
+        return view.render('eventos/eventos', { eventos: eventos.toJSON()})
+    }
 
 }
 

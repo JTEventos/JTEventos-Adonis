@@ -38,7 +38,7 @@ class LoginController {
     static logado(session, response) {
         const logado = session.get('logado')
         if (!logado) {
-            return response.status(401).redirect('/401')
+            //return response.status(401).redirect('/401')
         }
     }
 }

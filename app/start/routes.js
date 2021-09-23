@@ -24,10 +24,10 @@ Route.get('/', 'LoginController.index')
 Route.post('/login', 'LoginController.login')
 Route.post('/logout', 'LoginController.logout')
 
-//Evento
-Route.get('/eventos', 'EventoController.listarEventos')
+//Eventos
+Route.get('/eventos', 'EventoController.index')
 
-//Código de erro
+//Códigos de erro
 Route.get('/401', 'ErrorController.401')
 Route.get('/404', 'ErrorController.404')
 
