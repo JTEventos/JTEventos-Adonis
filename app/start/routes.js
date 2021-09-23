@@ -25,7 +25,7 @@ Route.post('/login', 'LoginController.login')
 Route.post('/logout', 'LoginController.logout')
 
 //Eventos
-Route.get('/eventos', 'EventoController.index')
+Route.get('/eventos', 'EventoController.listar')
 
 //Códigos de erro
 Route.get('/401', 'ErrorController.401')

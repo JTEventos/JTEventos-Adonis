@@ -5,12 +5,12 @@ const Evento = use('App/Models/Evento')
 
 class EventoController {
     
-    async index({view, session, response}) {
+    async listar({view, session, response}) {
         LoginController.logado(session, response)
         
         const eventos = await Evento.all();
 
-        return view.render('eventos/eventos', { eventos: eventos.toJSON()})
+        return view.render('eventos/listar', { eventos: eventos.toJSON()})
     }
 
 }
