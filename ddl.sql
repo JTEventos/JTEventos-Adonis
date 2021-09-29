@@ -41,3 +41,9 @@ constraint fk_eventocliente foreign key (id_cliente) references clientes(id)
 );
 
 insert into usuarios (nome, usuario, senha) values ('Administrador', 'admin', '12345');
+
+INSERT INTO clientes (id, nome, cpf, rg, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (1, 'Jonas Araujo', '00000000001', '0000000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO clientes (id, nome, cpf, rg, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (2, 'Thiago', '00000000002', '0000000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+INSERT INTO eventos (id_cliente, nome_evento, data_inicio, data_fim, lista_convidados) VALUES (1, 'Evento 11111111111111111111', '2021-09-22 00:00:00', '2021-09-22 00:00:00', NULL);
+INSERT INTO eventos (id_cliente, nome_evento, data_inicio, data_fim, lista_convidados) VALUES (2, 'Evento 2', '2021-09-22 00:00:00', '2021-09-22 00:00:00', NULL);

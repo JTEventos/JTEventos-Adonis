@@ -9,14 +9,42 @@
     {{ style('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css') }}
 </head>
 <body>
+
     <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8 is-offset-2">
-                    @!section('body')
+        @if(!login)
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+            
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
                 </div>
-            </div>
-        </div>
+            
+                <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/eventos" class="navbar-item">
+                    Eventos
+                    </a>
+            
+                    <a href="/clientes" class="navbar-item">
+                    Clientes
+                    </a>
+                </div>
+            
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                    <div class="buttons">
+                        <a href="/logout" class="button is-danger is-light">
+                            <strong>Logout</strong>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </nav>  
+        @endif
+        @!section('body')
   </section>
 </body>
 </html>

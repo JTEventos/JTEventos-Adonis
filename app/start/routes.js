@@ -22,7 +22,7 @@ const Route = use('Route')
 //Login
 Route.get('/', 'LoginController.index')
 Route.post('/login', 'LoginController.login')
-Route.post('/logout', 'LoginController.logout')
+Route.get('/logout', 'LoginController.logout')
 
 //Eventos
 Route.get('/eventos', 'EventoController.listar')
