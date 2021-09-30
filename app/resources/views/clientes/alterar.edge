@@ -1,0 +1,87 @@
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Clientes')
+  <h1>Alterar Cliente</h1>
+  <form action="/clientes/salvar/{{ cliente.id }}" method="POST">
+    {{csrfField()}}
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome" value="{{ cliente.nome }}">
+
+    <br />
+    <br />
+
+    <label for="cpf">CPF:</label>
+    <input type="text" name="cpf" id="cpf" value="{{ cliente.cpf }}">
+
+    <br />
+    <br />
+
+    <label for="email">E-mail:</label>
+    <input type="text" name="email" id="email" value="{{ cliente.email }}">
+
+    <br />
+    <br />
+
+    <label for="tel_celular">Tel. Celular:</label>
+    <input type="text" name="tel_celular" id="tel_celular" value="{{ cliente.tel_celular }}">
+
+    <br />
+    <br />
+
+    <label for="tel_fixo">Tel. Fixo:</label>
+    <input type="text" name="tel_fixo" id="tel_fixo" value="{{ cliente.tel_fixo }}">
+
+    <br />
+    <br />
+
+    <label for="cep">CEP:</label>
+    <input type="text" name="cep" id="cep" value="{{ cliente.cep }}">
+
+    <br />
+    <br />
+
+    <label for="logradouro">Logradouro:</label>
+    <input type="text" name="logradouro" id="logradouro" value="{{ cliente.logradouro }}">
+
+    <br />
+    <br />
+
+    <label for="numero">Número:</label>
+    <input type="text" name="numero" id="numero" value="{{ cliente.numero }}">
+
+    <br />
+    <br />
+
+    <label for="complemento">Complemento:</label>
+    <input type="text" name="complemento" id="complemento" value="{{ cliente.complemento }}">
+
+    <br />
+    <br />
+
+    <label for="bairro">Bairro:</label>
+    <input type="text" name="bairro" id="bairro" value="{{ cliente.bairro }}">
+
+    <br />
+    <br />
+
+    <label for="cidade">Cidade:</label>
+    <input type="text" name="cidade" id="cidade" value="{{ cliente.cidade }}">
+
+    <br />
+    <br />
+
+    <label for="estado">Estado:</label>
+    <input type="text" name="estado" id="estado" value="{{ cliente.estado }}">
+
+    <br />
+    <br />
+
+    <button type="submit">
+        <span>Alterar</span>
+    </button>
+    <button type="reset">
+        <span>Limpar</span>
+    </button>
+  </form>
+@endsection

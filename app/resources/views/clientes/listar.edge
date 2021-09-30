@@ -38,7 +38,7 @@
                 <td>{{ cliente.cep }}</td>
                 <td>{{ cliente.logradouro }}, {{ cliente.numero }}, {{ cliente.complemento }} - {{ cliente.bairro }}, {{ cliente.cidade }} - {{ cliente.estado }}</td>
                 <td>
-                    <button class="button is-link is-small">Alterar</button>
+                    <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>
                     <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
                 </td>
             </tr>
