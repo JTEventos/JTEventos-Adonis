@@ -12,11 +12,11 @@ class ClienteController {
     return view.render('clientes/listar', { clientes: clientes.toJSON() })
   }
 
-  async cadastrar({view}) {
+  async cadastrar({ view }) {
     return view.render('clientes/cadastrar')
   }
 
-  async salvar({request, response}) {
+  async salvar({ request, response }) {
     const cliente = new Cliente()
 
     cliente.nome = request.input('nome')
@@ -33,7 +33,17 @@ class ClienteController {
     cliente.estado = request.input('estado')
 
     await cliente.save()
+
     return response.redirect('/clientes')
+  }
+
+  async deletar({ params, session, response }) {
+    const cliente = await Cliente.find(params.id)
+
+    await cliente.delete()
+    session.flash({ notificacao: 'Cliente removido com sucesso!' })
+
+    return response.redirect('back')
   }
 }
 

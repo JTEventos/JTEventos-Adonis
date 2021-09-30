@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cadastro de Eventos</title>
+</head>
+<body>
+  <h1>Cadastro de Eventos</h1>
+  <form action="/eventos/salvar" method="POST">
+    {{csrfField()}}
+    <label for="cliente">Código do Cliente:</label>
+    <input type="text" name="cliente" id="cliente">
+
+    <br />
+    <br />
+
+    <label for="nome">Nome do Evento:</label>
+    <input type="text" name="nome" id="nome">
+
+    <br />
+    <br />
+
+    <label for="dt_ini">Data de início:</label>
+    <input type="text" name="dt_ini" id="dt_ini">
+
+    <br />
+    <br />
+
+    <label for="dt_fim">Data de fim:</label>
+    <input type="text" name="dt_fim" id="dt_fim">
+
+    <br />
+    <br />
+
+    <label for="convidados">Lista de convidados:</label>
+    <input type="text" name="convidados" id="convidados">
+
+    <br />
+    <br />
+
+    <button type="submit">
+        <span>Cadastrar</span>
+    </button>
+    <button type="reset">
+        <span>Limpar</span>
+    </button>
+  </form>
+</body>
+</html>

@@ -2,14 +2,14 @@
 
 @section('body')
     @set('title', 'Login')
-    
+
     @if(old('notificacao'))
     <div class="notification is-warning is-half">
         <button class="delete"></button>
         {{old('notificacao')}}
     </div>
     @endif
-    
+
     <h1>Login</h1>
     <form action="/login" method="POST">
         {{csrfField()}}
@@ -24,13 +24,13 @@
 
         <br />
         <br />
-        
+
         <button type="submit">
             <span>Login</span>
         </button>
         <button type="reset">
             <span>Limpar</span>
         </button>
-
     </form>
+
 @endsection

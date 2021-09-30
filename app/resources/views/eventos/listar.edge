@@ -1,13 +1,18 @@
 @layout('./layouts/index')
+
 @section('body')
     <h1>Eventos</h1>
+
     @if(old('notificacao'))
     <div class="column is-half notification is-primary">
         <button class="delete"></button>
         {{old('notificacao')}}
     </div>
     @endif
-    @if(eventos && eventos.length > 0) 
+
+    <a href="/eventos/cadastrar">Cadastrar</a>
+
+    @if(eventos && eventos.length > 0)
         <table class="table">
             <thead>
                 <th>ID</th>
@@ -17,6 +22,7 @@
                 <th>Data Fim</th>
                 <th>Ações</th>
             </thead>
+
             @each(evento in eventos)
             <tr>
                 <td>{{ evento.id }}</td>
@@ -30,8 +36,10 @@
                 </td>
             </tr>
             @endeach
+
         </table>
     @else
-        
+        <h2>Não há nenhum evento cadastrado.</h2>
     @endif
+
 @endsection

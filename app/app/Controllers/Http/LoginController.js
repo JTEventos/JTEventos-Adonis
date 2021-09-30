@@ -12,7 +12,6 @@ class LoginController {
         const inputUsuario = request.input('usuario')
         const inputSenha = request.input('senha')
 
-        //const usuario = new Usuario;
         const usuario = await Usuario.
             query()
             .where('usuario', '=', inputUsuario)

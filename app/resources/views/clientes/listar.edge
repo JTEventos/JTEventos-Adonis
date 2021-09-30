@@ -1,8 +1,18 @@
 @layout('./layouts/index')
+
 @section('body')
     @set('title', 'Clientes')
     <h1>Clientes</h1>
-    <a href="http://localhost:3333/clientes/cadastrar">Cadastrar</a>
+
+    @if(old('notificacao'))
+    <div class="column is-half notification is-primary">
+        <button class="delete"></button>
+        {{old('notificacao')}}
+    </div>
+    @endif
+
+    <a href="/clientes/cadastrar">Cadastrar</a>
+
     @if(clientes && clientes.length > 0)
         <table class="table">
             <thead>
@@ -16,6 +26,7 @@
                 <th>Endereço</th>
                 <th>Ações</th>
             </thead>
+
             @each(cliente in clientes)
             <tr>
                 <td>{{ cliente.id }}</td>
@@ -28,12 +39,14 @@
                 <td>{{ cliente.logradouro }}, {{ cliente.numero }}, {{ cliente.complemento }} - {{ cliente.bairro }}, {{ cliente.cidade }} - {{ cliente.estado }}</td>
                 <td>
                     <button class="button is-link is-small">Alterar</button>
-                    <button class="button is-link is-small">Deletar</button>
+                    <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
                 </td>
             </tr>
             @endeach
+
         </table>
     @else
         <h2>Não há nenhum cliente cadastrado.</h2>
     @endif
+
 @endsection
