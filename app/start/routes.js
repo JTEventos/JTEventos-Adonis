@@ -25,14 +25,16 @@ Route.get('/logout', 'LoginController.logout')
 
 //Eventos
 Route.get('/eventos', 'EventoController.listar')
+Route.get('/eventos/cadastrar', 'EventoController.cadastrar')
+Route.post('/eventos/salvar', 'EventoController.salvar')
 Route.get('/eventos/deletar/:id', 'EventoController.deletar')
 
 //Clientes
 Route.get('/clientes', 'ClienteController.listar')
 Route.get('/clientes/cadastrar', 'ClienteController.cadastrar')
 Route.post('/clientes/salvar', 'ClienteController.salvar')
+Route.get('/clientes/deletar/:id', 'ClienteController.deletar')
 
 //Códigos de erro
 Route.get('/401', 'ErrorController.401')
 Route.get('/404', 'ErrorController.404')
-
