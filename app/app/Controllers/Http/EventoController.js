@@ -8,12 +8,14 @@ class EventoController {
     async listar({view, session, response}) {
         LoginController.logado(session, response)
 
-        const eventos = await Evento.query('eventos as e')
-            .innerJoin('clientes as c', 'id_cliente', 'c.id')
-            .orderBy('data_inicio', 'desc')
-        .fetch()
+        const eventos = await Evento.all()
 
-        return view.render('eventos/listar', { eventos: eventos.toJSON()})
+        // const eventos = await Evento.query('eventos as e')
+        //     .innerJoin('clientes as c', 'id_cliente', 'c.id')
+        //     .orderBy('data_inicio', 'desc')
+        // .fetch()
+
+        return view.render('eventos/listar', { eventos: eventos.toJSON() })
     }
 
     async cadastrar({view}) {
@@ -27,7 +29,6 @@ class EventoController {
         evento = await Evento.find(params.id)
       }
 
-      console.log(request.input('dt_ini'))
       evento.id_cliente = request.input('cliente')
       evento.nome_evento = request.input('nome')
       evento.data_inicio = request.input('dt_ini')
@@ -35,10 +36,10 @@ class EventoController {
       evento.lista_convidados = request.input('convidados')
 
       await evento.save()
-    
+
       if (params.id) {
         session.flash({notificacao: 'Evento alterado com sucesso!'})
-      } else {    
+      } else {
         session.flash({notificacao: 'Evento cadastrado com sucesso!'})
       }
 

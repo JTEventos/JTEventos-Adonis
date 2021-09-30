@@ -18,7 +18,7 @@ class ClienteController {
 
   async salvar({ params, request, response, session }) {
     let cliente = new Cliente()
-    
+
     if (params.id) {
       cliente = await Cliente.find(params.id)
     }
@@ -37,10 +37,10 @@ class ClienteController {
     cliente.estado = request.input('estado')
 
     await cliente.save()
-    
+
     if (params.id) {
       session.flash({notificacao: 'Cliente alterado com sucesso!'})
-    } else {    
+    } else {
       session.flash({notificacao: 'Cliente cadastrado com sucesso!'})
     }
 
