@@ -51,6 +51,12 @@
   <title>Cadastro de Clientes</title>
 </head>
 <body>
+
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Clientes')
+
   <h1>Cadastro de Clientes</h1>
   <form action="/clientes/salvar" method="POST">
     {{csrfField()}}
@@ -133,5 +139,4 @@
         <span>Limpar</span>
     </button>
   </form>
-</body>
-</html>
+@endsection

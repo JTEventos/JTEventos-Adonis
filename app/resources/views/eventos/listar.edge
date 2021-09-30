@@ -31,7 +31,7 @@
                 <td>{{ evento.data_inicio }}</td>
                 <td>{{ evento.data_fim }}</td>
                 <td>
-                    <button class="button is-link is-small">Alterar</button>
+                    <a href="/eventos/alterar/{{ evento.id }}"><button class="button is-link is-small">Alterar</button></a>
                     <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
                 </td>
             </tr>
