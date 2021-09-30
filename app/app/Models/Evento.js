@@ -12,11 +12,15 @@ class Evento extends Model {
       return null
     }
 
+    static get dateFormat () {
+      return 'DD-MM-YYYY HH:mm:ss'
+    }
+
     static get dates () {
         return super.dates.concat(['data_inicio', 'data_fim'])
       }
 
-    static formatDates (field, value) {
+    static castDates(field, value) {
         if (field === 'data_inicio' || field === 'data_fim' ) {
             return value.format('DD-MM-YYYY HH:mm:ss')
         }

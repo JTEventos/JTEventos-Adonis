@@ -16,8 +16,12 @@ class ClienteController {
     return view.render('clientes/cadastrar')
   }
 
-  async salvar({ request, response }) {
-    const cliente = new Cliente()
+  async salvar({ params, request, response, session }) {
+    let cliente = new Cliente()
+    
+    if (params.id) {
+      cliente = await Cliente.find(params.id)
+    }
 
     cliente.nome = request.input('nome')
     cliente.cpf = request.input('cpf')
@@ -33,6 +37,12 @@ class ClienteController {
     cliente.estado = request.input('estado')
 
     await cliente.save()
+    
+    if (params.id) {
+      session.flash({notificacao: 'Cliente alterado com sucesso!'})
+    } else {    
+      session.flash({notificacao: 'Cliente cadastrado com sucesso!'})
+    }
 
     return response.redirect('/clientes')
   }
@@ -44,6 +54,12 @@ class ClienteController {
     session.flash({ notificacao: 'Cliente removido com sucesso!' })
 
     return response.redirect('back')
+  }
+
+  async alterar({ params, view }) {
+    const cliente = await Cliente.find(params.id)
+
+    return view.render('clientes/alterar', { cliente: cliente.toJSON() })
   }
 }
 

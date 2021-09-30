@@ -2,41 +2,41 @@
 
 @section('body')
   @set('title', 'Eventos')
-  <h1>Cadastro de Eventos</h1>
-  <form action="/eventos/salvar" method="POST">
+  <h1>Alterar Evento</h1>
+  <form action="/eventos/salvar/{{ evento.id }}" method="POST">
     {{csrfField()}}
     <label for="cliente">Código do Cliente:</label>
-    <input type="text" name="cliente" id="cliente">
+    <input type="text" name="cliente" id="cliente" value="{{ evento.id_cliente }}">
 
     <br />
     <br />
 
     <label for="nome">Nome do Evento:</label>
-    <input type="text" name="nome" id="nome">
+    <input type="text" name="nome" id="nome" value="{{ evento.nome_evento }}">
 
     <br />
     <br />
 
     <label for="dt_ini">Data de início:</label>
-    <input type="text" name="dt_ini" id="dt_ini">
+    <input type="datetime" name="dt_ini" id="dt_ini" value="{{ evento.data_inicio }}">
 
     <br />
     <br />
 
     <label for="dt_fim">Data de fim:</label>
-    <input type="text" name="dt_fim" id="dt_fim">
+    <input type="datetime" name="dt_fim" id="dt_fim" value="{{ evento.data_fim }}">
 
     <br />
     <br />
 
     <label for="convidados">Lista de convidados:</label>
-    <input type="text" name="convidados" id="convidados">
+    <input type="text" name="convidados" id="convidados" value="{{ evento.lista_convidados }}">
 
     <br />
     <br />
 
     <button type="submit">
-        <span>Cadastrar</span>
+        <span>Alterar</span>
     </button>
     <button type="reset">
         <span>Limpar</span>
