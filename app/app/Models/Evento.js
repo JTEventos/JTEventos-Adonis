@@ -16,8 +16,8 @@ class Evento extends Model {
         return super.formatDates(field, value)
     }
 
-    clientes() {
-        return this.hasMany('App/Models/Cliente')
+    cliente() {
+        return this.hasOne('App/Models/Cliente')
     }
     
 }

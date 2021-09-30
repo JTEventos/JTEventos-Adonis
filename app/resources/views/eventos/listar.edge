@@ -1,6 +1,12 @@
 @layout('./layouts/index')
 @section('body')
     <h1>Eventos</h1>
+    @if(old('notificacao'))
+    <div class="column is-half notification is-primary">
+        <button class="delete"></button>
+        {{old('notificacao')}}
+    </div>
+    @endif
     @if(eventos && eventos.length > 0) 
         <table class="table">
             <thead>
@@ -14,13 +20,13 @@
             @each(evento in eventos)
             <tr>
                 <td>{{ evento.id }}</td>
-                <td>{{ evento.id_cliente }}</td>
+                <td>{{ evento.nome }}</td>
                 <td>{{ evento.nome_evento }}</td>
                 <td>{{ evento.data_inicio }}</td>
                 <td>{{ evento.data_fim }}</td>
                 <td>
                     <button class="button is-link is-small">Alterar</button>
-                    <button class="button is-link is-small">Deletar</button>
+                    <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
                 </td>
             </tr>
             @endeach
