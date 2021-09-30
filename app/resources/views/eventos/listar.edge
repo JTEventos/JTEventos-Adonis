@@ -15,8 +15,8 @@
     @if(eventos && eventos.length > 0)
         <table class="table">
             <thead>
-                <th>ID</th>
-                <th>Cliente</th>
+                <th>ID Evento</th>
+                <th>ID Cliente</th>
                 <th>Nome</th>
                 <th>Data Início</th>
                 <th>Data Fim</th>
@@ -26,7 +26,7 @@
             @each(evento in eventos)
             <tr>
                 <td>{{ evento.id }}</td>
-                <td>{{ evento.nome }}</td>
+                <td>{{ evento.id_cliente }}</td>
                 <td>{{ evento.nome_evento }}</td>
                 <td>{{ evento.data_inicio }}</td>
                 <td>{{ evento.data_fim }}</td>
