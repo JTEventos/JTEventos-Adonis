@@ -26,6 +26,7 @@ Route.get('/logout', 'LoginController.logout')
 
 //Eventos
 Route.get('/eventos', 'EventoController.listar')
+Route.get('/eventos/deletar/:id', 'EventoController.deletar')
 
 //Códigos de erro
 Route.get('/401', 'ErrorController.401')
