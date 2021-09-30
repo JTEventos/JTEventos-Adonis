@@ -1,0 +1,39 @@
+@layout('./layouts/index')
+@section('body')
+    @set('title', 'Clientes')
+    <h1>Clientes</h1>
+    <a href="http://localhost:3333/clientes/cadastrar">Cadastrar</a>
+    @if(clientes && clientes.length > 0)
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Tel. Celular</th>
+                <th>Tel. Fixo</th>
+                <th>CEP</th>
+                <th>Endereço</th>
+                <th>Ações</th>
+            </thead>
+            @each(cliente in clientes)
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.tel_celular }}</td>
+                <td>{{ cliente.tel_fixo }}</td>
+                <td>{{ cliente.cep }}</td>
+                <td>{{ cliente.logradouro }}, {{ cliente.numero }}, {{ cliente.complemento }} - {{ cliente.bairro }}, {{ cliente.cidade }} - {{ cliente.estado }}</td>
+                <td>
+                    <button class="button is-link is-small">Alterar</button>
+                    <button class="button is-link is-small">Deletar</button>
+                </td>
+            </tr>
+            @endeach
+        </table>
+    @else
+        <h2>Não há nenhum cliente cadastrado.</h2>
+    @endif
+@endsection
