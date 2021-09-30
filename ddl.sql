@@ -17,7 +17,7 @@ create table clientes (
     cep varchar(15) not null,
     logradouro varchar(100) not null,
     numero varchar(10) not null,
-    complemento varchar(20) not null,
+    complemento varchar(20),
     bairro varchar(50) not null,
     cidade varchar(50) not null,
     estado varchar(2) not null,
@@ -26,7 +26,6 @@ create table clientes (
     tel_fixo varchar(15),
 primary key (id)
 );
-
  
 create table eventos /*(mandar por e-mail a confirmação do evento)*/ (
     id int not null auto_increment,
