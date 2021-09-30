@@ -1,7 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script>
+    // https://viacep.com.br/exemplo/javascript/
+    function limpaFormularioCep() {
+      document.getElementById('logradouro').value=('');
+      document.getElementById('numero').value=('');
+      document.getElementById('complemento').value=('');
+      document.getElementById('bairro').value=('');
+      document.getElementById('cidade').value=('');
+      document.getElementById('estado').value=('');
+    }
+
+    function meuCallback(conteudo) {
+      if (!('erro' in conteudo)) {
+        document.getElementById('logradouro').value=(conteudo.logradouro);
+        document.getElementById('bairro').value=(conteudo.bairro);
+        document.getElementById('cidade').value=(conteudo.localidade);
+        document.getElementById('estado').value=(conteudo.uf);
+      } else {
+        limpaFormularioCep();
+        alert('CEP não encontrado.');
+      }
+    }
+
+    function pesquisaCep(valor) {
+      var cep = valor.replace(/\D/g, '');
+
+      if (cep != '') {
+        var validacep = /^[0-9]{8}$/;
+
+        if(validacep.test(cep)) {
+          var script = document.createElement('script');
+
+          script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meuCallback';
+
+          document.body.appendChild(script);
+        } else {
+          limpaFormularioCep();
+          alert('Formato de CEP inválido.');
+        }
+      } else {
+        limpaFormularioCep();
+      }
+    };
+  </script>
+  <title>Cadastro de Clientes</title>
+</head>
+<body>
+
 @layout('./layouts/index')
 
 @section('body')
   @set('title', 'Clientes')
+
   <h1>Cadastro de Clientes</h1>
   <form action="/clientes/salvar" method="POST">
     {{csrfField()}}
@@ -36,13 +91,13 @@
     <br />
 
     <label for="cep">CEP:</label>
-    <input type="text" name="cep" id="cep">
+    <input type="text" name="cep" id="cep" maxlength="8" onblur="pesquisaCep(this.value);">
 
     <br />
     <br />
 
     <label for="logradouro">Logradouro:</label>
-    <input type="text" name="logradouro" id="logradouro">
+    <input type="text" name="logradouro" id="logradouro" disabled>
 
     <br />
     <br />
@@ -60,19 +115,19 @@
     <br />
 
     <label for="bairro">Bairro:</label>
-    <input type="text" name="bairro" id="bairro">
+    <input type="text" name="bairro" id="bairro" disabled>
 
     <br />
     <br />
 
     <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" id="cidade">
+    <input type="text" name="cidade" id="cidade" disabled>
 
     <br />
     <br />
 
-    <label for="estado">Estado:</label>
-    <input type="text" name="estado" id="estado">
+    <label for="estado">UF:</label>
+    <input type="text" name="estado" id="estado" max="2" disabled>
 
     <br />
     <br />
