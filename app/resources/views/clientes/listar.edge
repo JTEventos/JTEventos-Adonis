@@ -5,7 +5,7 @@
 
   <div class="container">
     @if(old('notificacao'))
-    <div class="column is-half notification is-primary">
+    <div class="notification is-success is-light">
         <button class="delete"></button>
         {{old('notificacao')}}
     </div>
@@ -26,10 +26,8 @@
         <thead>
           <th>ID</th>
           <th>Nome</th>
-          <th>CPF</th>
           <th>E-mail</th>
           <th>Tel. Celular</th>
-          <th>CEP</th>
           <th>Ações</th>
         </thead>
 
@@ -37,10 +35,8 @@
         <tr>
           <td>{{ cliente.id }}</td>
           <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.cpf }}</td>
           <td>{{ cliente.email }}</td>
           <td>{{ cliente.tel_celular }}</td>
-          <td>{{ cliente.cep }}</td>
           <td>
             <a href="/clientes/detalhar/{{ cliente.id }}"><button class="button is-link is-small">Detalhar</button></a>
             <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>

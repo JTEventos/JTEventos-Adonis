@@ -1,0 +1,57 @@
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Usuários')
+
+  <div class="container">
+    @if(old('notificacao'))
+    <div class="notification is-success">
+        <button class="delete"></button>
+        {{old('notificacao')}}
+    </div>
+    @endif
+
+    <div class="line">
+      <h1 class="title text-center">Usuários</h1>
+    </div>
+
+    <div class="buttons">
+      <a href="/usuarios/cadastrar" class="button is-success">
+        <strong>Cadastrar</strong>
+      </a>
+    </div>
+
+    @if(usuarios && usuarios.length > 1)
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Username</th>
+        <th>Ações</th>
+      </thead>
+
+      @each(usuario in usuarios)
+        @if(usuario.id != 1)
+        <tr>
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.usuario }}</td>
+          <td>
+            <a href="/usuarios/detalhar/{{ usuario.id }}"><button class="button is-link is-small">Detalhar</button></a>
+            <a href="/usuarios/alterar/{{ usuario.id }}"><button class="button is-link is-small">Alterar</button></a>
+          </td>
+        </tr>
+        @endif
+      @endeach
+    @else
+    <div class="sem-cadastros">
+      <div class="logo"></div>
+      <div class="subtitle">
+        <p>Clique no botão "Cadastrar" para registrar um novo usuário.</p>
+      </div>
+    </div>
+    @endif
+    </table>
+  </div>
+
+@endsection

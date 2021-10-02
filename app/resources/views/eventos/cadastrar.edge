@@ -17,8 +17,8 @@
       <div class="input-new">
         <label for="cliente" class="label">ID Cliente <strong class="notnull">*</strong>:</label>
         <div class="control">
-          <div class="select">
-            <select name="cliente" id="cliente" class="input is-info">
+          <div class="select is-info">
+            <select name="cliente" id="cliente" class="select is-info">
               <option value="" disabled selected>Selecione</option>
               @each(cliente in clientes)
               <option value="{{ cliente.id }}">{{ cliente.id }} - {{ cliente.nome }}</option>
