@@ -2,6 +2,7 @@
 
 const LoginController = use('App/Controllers/Http/LoginController')
 const Evento = use('App/Models/Evento')
+const Cliente = use('App/Models/Cliente')
 
 class EventoController {
 
@@ -19,7 +20,9 @@ class EventoController {
     }
 
     async cadastrar({view}) {
-      return view.render('eventos/cadastrar')
+      const clientes = await Cliente.all()
+
+      return view.render('eventos/cadastrar', { clientes: clientes.toJSON() })
     }
 
     async salvar({params, request, response, session}) {
@@ -32,7 +35,9 @@ class EventoController {
       evento.id_cliente = request.input('cliente')
       evento.nome_evento = request.input('nome')
       evento.data_inicio = request.input('dt_ini')
+      evento.hora_inicio = request.input('hr_ini')
       evento.data_fim = request.input('dt_fim')
+      evento.hora_fim = request.input('hr_fim')
       evento.lista_convidados = request.input('convidados')
 
       await evento.save()
@@ -50,7 +55,7 @@ class EventoController {
         const evento = await Evento.find(params.id)
         await evento.delete()
         session.flash({notificacao: 'Evento removido com sucesso!'})
-        return response.redirect('back')
+        return response.redirect('/eventos')
     }
 
     async alterar({ params, view }) {
@@ -59,6 +64,11 @@ class EventoController {
       return view.render('eventos/alterar', { evento: evento.toJSON() })
     }
 
+    async detalhar({ params, view }) {
+      const evento = await Evento.find(params.id)
+
+      return view.render('eventos/detalhar', { evento: evento.toJSON() })
+    }
 }
 
 module.exports = EventoController

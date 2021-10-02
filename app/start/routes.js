@@ -31,6 +31,7 @@ Route.post('/eventos/salvar/:id', 'EventoController.salvar')
 Route.get('/eventos/alterar/:id', 'EventoController.alterar')
 Route.post('/eventos/salvar/:id', 'EventoController.salvar')
 Route.get('/eventos/deletar/:id', 'EventoController.deletar')
+Route.get('/eventos/detalhar/:id', 'EventoController.detalhar')
 
 //Clientes
 Route.get('/clientes', 'ClienteController.listar')
@@ -40,6 +41,7 @@ Route.post('/clientes/salvar/:id', 'ClienteController.salvar')
 Route.get('/clientes/alterar/:id', 'ClienteController.alterar')
 Route.post('/clientes/salvar/:id', 'ClienteController.salvar')
 Route.get('/clientes/deletar/:id', 'ClienteController.deletar')
+Route.get('/clientes/detalhar/:id', 'ClienteController.detalhar')
 
 //Códigos de erro
 Route.get('/401', 'ErrorController.401')

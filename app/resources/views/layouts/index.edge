@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <script type="text/javascript">$("#tel_celular").mask("(00) 00000-0000");</script>
+    <script type="text/javascript">$("#tel_fixo").mask("(00) 0000-0000");</script>
+    <script type="text/javascript">$("#cpf").mask("000.000.000-00");</script>
+    <script type="text/javascript">$("#cep").mask("00000-000");</script>
     <script>
       // https://viacep.com.br/exemplo/javascript/
       function limpaFormularioCep() {
@@ -31,12 +37,13 @@
         var cep = valor.replace(/\D/g, '');
 
         if (cep != '') {
-          var validacep = /^[0-9]{8}$/;
+          var validacep = /^[0-9]{5}-[0-9]{3}$/;
 
           if(validacep.test(cep)) {
+            cepFormat = cep.replace('-', '')
             var script = document.createElement('script');
 
-            script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meuCallback';
+            script.src = 'https://viacep.com.br/ws/' + cepFormat + '/json/?callback=meuCallback';
 
             document.body.appendChild(script);
           } else {
@@ -51,11 +58,16 @@
     <title>{{ title }}</title>
     {{ style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
     {{ style('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css') }}
+    {{ style('login') }}
+    {{ style('style') }}
+    {{ style('listagem') }}
+    {{ style('cadastros') }}
 </head>
 <body>
     <section class="section">
 
         @if(!login)
+            <div class="logotipo"></div>
             <nav class="navbar" role="navigation" aria-label="main navigation">
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -66,25 +78,25 @@
                 </div>
 
                 <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a href="/eventos" class="navbar-item">
-                    Eventos
-                    </a>
+                    <div class="navbar-start">
+                        <a href="/eventos" class="navbar-item">
+                        Eventos
+                        </a>
 
-                    <a href="/clientes" class="navbar-item">
-                    Clientes
-                    </a>
-                </div>
-
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                    <div class="buttons">
-                        <a href="/logout" class="button is-danger is-light">
-                            <strong>Logout</strong>
+                        <a href="/clientes" class="navbar-item">
+                        Clientes
                         </a>
                     </div>
+
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                        <div class="buttons">
+                            <a href="/logout" class="button is-danger">
+                                <strong>Logout</strong>
+                            </a>
+                        </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </nav>
         @endif

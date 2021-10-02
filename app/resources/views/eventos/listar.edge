@@ -1,8 +1,9 @@
 @layout('./layouts/index')
 
 @section('body')
-    <h1>Eventos</h1>
+  @set('title', 'Clientes')
 
+  <div class="container">
     @if(old('notificacao'))
     <div class="column is-half notification is-primary">
         <button class="delete"></button>
@@ -10,36 +11,53 @@
     </div>
     @endif
 
-    <a href="/eventos/cadastrar">Cadastrar</a>
+    <div class="line">
+      <h1 class="title text-center">Eventos</h1>
+    </div>
+
+    <div class="buttons">
+      <a href="/eventos/cadastrar" class="button is-success">
+        <strong>Cadastrar</strong>
+      </a>
+    </div>
 
     @if(eventos && eventos.length > 0)
-        <table class="table">
-            <thead>
-                <th>ID Evento</th>
-                <th>ID Cliente</th>
-                <th>Nome</th>
-                <th>Data Início</th>
-                <th>Data Fim</th>
-                <th>Ações</th>
-            </thead>
+      <table class="table">
+        <thead>
+          <th>ID Evento</th>
+          <th>ID Cliente</th>
+          <th>Nome</th>
+          <th>Data/Hora de Início</th>
+          <th>Data/Hora de Fim</th>
+          <th>Ações</th>
+        </thead>
 
-            @each(evento in eventos)
-            <tr>
-                <td>{{ evento.id }}</td>
-                <td>{{ evento.id_cliente }}</td>
-                <td>{{ evento.nome_evento }}</td>
-                <td>{{ evento.data_inicio }}</td>
-                <td>{{ evento.data_fim }}</td>
-                <td>
-                    <a href="/eventos/alterar/{{ evento.id }}"><button class="button is-link is-small">Alterar</button></a>
-                    <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
-                </td>
-            </tr>
-            @endeach
+        @each(evento in eventos)
+        <tr>
+          <td>{{ evento.id }}</td>
+          <td>{{ evento.id_cliente }}</td>
+          <td>{{ evento.nome_evento }}</td>
+          <td>{{ evento.data_inicio }} - {{ evento.hora_inicio }}</td>
+          <td>{{ evento.data_fim }} - {{ evento.hora_fim }}</td>
+          <td>
+            <a href="/eventos/detalhar/{{ evento.id }}"><button class="button is-link is-small">Detalhar</button></a>
+            <a href="/eventos/alterar/{{ evento.id }}"><button class="button is-link is-small">Alterar</button></a>
+            <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
+          </td>
+        </tr>
+        @endeach
 
-        </table>
+      </table>
     @else
-        <h2>Não há nenhum evento cadastrado.</h2>
+    <div class="sem-cadastros">
+      <div class="logo"></div>
+      <div class="subtitle">
+        <p>Não há nenhum evento cadastrado.</p>
+        <p>Clique no botão "Cadastrar" para começar.</p>
+      </div>
+    </div>
     @endif
+
+  </div>
 
 @endsection

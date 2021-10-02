@@ -1,0 +1,17 @@
+/* Este arquivo é responsável pelo layout da tela login.edge */
+
+.lgn {
+  font-size: 30px;
+}
+
+.div-login .button {
+  width: 100%;
+}
+
+.logotipo-login {
+  background: url("/logo.png") no-repeat;
+  width: 256px;
+  height: 253px;
+  background-size: 100%;
+  margin: auto;
+}

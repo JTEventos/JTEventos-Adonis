@@ -1,0 +1,59 @@
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Eventos')
+
+  <div class="container">
+    <div class="line">
+      <h1 class="title text-center">Detalhamento de Evento</h1>
+    </div>
+
+    <form action="/eventos/visualizar/{{ evento.id }}" method="GET">
+      {{csrfField()}}
+      <div class="label-view">
+        <label><strong>ID:</strong> {{ evento.id }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>ID Cliente:</strong> {{ evento.id_cliente }}</label>
+      </div>
+
+      <hr>
+
+      <div class="label-view">
+        <label><strong>Nome do Evento:</strong><br>
+          {{ evento.nome_evento }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>Data/Hora de início:</strong><br>
+          {{ evento.data_inicio }} - {{ evento.hora_inicio }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>Data/Hora de fim:</strong><br>
+          {{ evento.data_fim }} - {{ evento.hora_fim }}</label>
+      </div>
+
+      <hr>
+
+      <div class="label-view">
+        <label for="convidados"><strong>Lista de convidados:</strong><br>
+          {{ evento.lista_convidados }}</label>
+      </div>
+
+      <div class="buttons">
+        <button class="button is-primary is-light">
+          <a href="/clientes" class="button is-primary is-light">Voltar</a>
+        </button>
+        <button class="button is-warning is-light">
+          <a href="/eventos/alterar/{{ evento.id }}" class="button is-warning is-light">Alterar</a>
+        </button>
+        <button class="button is-danger is-light">
+          <a href="/eventos/deletar/{{ evento.id }}" class="button is-danger is-light">Deletar</a>
+        </button>
+      </div>
+    </form>
+  </div>
+
+@endsection

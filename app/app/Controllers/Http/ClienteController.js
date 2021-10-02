@@ -53,13 +53,19 @@ class ClienteController {
     await cliente.delete()
     session.flash({ notificacao: 'Cliente removido com sucesso!' })
 
-    return response.redirect('back')
+    return response.redirect('/clientes')
   }
 
   async alterar({ params, view }) {
     const cliente = await Cliente.find(params.id)
 
     return view.render('clientes/alterar', { cliente: cliente.toJSON() })
+  }
+
+  async detalhar({ params, view }) {
+    const cliente = await Cliente.find(params.id)
+
+    return view.render('clientes/detalhar', { cliente: cliente.toJSON() })
   }
 }
 

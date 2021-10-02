@@ -1,0 +1,20 @@
+/* Este arquivo é responsável pelo layout das telas listar.edge */
+
+table {
+  margin: auto;
+}
+
+.logo {
+  background: url("/alerta.png") no-repeat;
+  width: 86px;
+  height: 83px;
+  background-size: 100%;
+  margin-bottom: 35px;
+  margin: auto;
+}
+
+.subtitle {
+  margin-top: 25px;
+  font-size: 25px;
+  text-align: center;
+}

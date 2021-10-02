@@ -2,8 +2,19 @@
 
 @section('body')
     @set('title', '401')
-    Erro 401 - Usuário não autorizado
-    <br>
-    <br>
-    <a href="/">Realizar login</a>
+
+    <div class="container">
+      <div class="line">
+        <h1 class="title text-center">Erro 401 - Usuário não autorizado</h1>
+      </div>
+
+      <br>
+
+      <div class="buttons">
+        <a href="/" class="button is-warning">
+          <strong>Realizar login</strong>
+        </a>
+      </div>
+    </div>
+
 @endsection
