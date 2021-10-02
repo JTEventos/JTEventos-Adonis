@@ -1,0 +1,7 @@
+1. Criar alert para campos obrigatórios em branco
+2. Criar alert para exclusão de clientes vinculados em eventos
+3. Ajustar data de inicio e fim, pois está exibindo hora.
+4. Validar acesso a tela de login mesmo com usuário conectado.
+5. Ajustar campos "null"
+6. Incluir confirmação do usuário antes de deletar um registro
+7. Ver o porque alterar usuário não está funcionando

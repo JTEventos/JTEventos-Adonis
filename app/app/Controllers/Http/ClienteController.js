@@ -39,9 +39,9 @@ class ClienteController {
     await cliente.save()
 
     if (params.id) {
-      session.flash({notificacao: 'Cliente alterado com sucesso!'})
+      session.flash({ notificacao: 'Cliente alterado com sucesso!' })
     } else {
-      session.flash({notificacao: 'Cliente cadastrado com sucesso!'})
+      session.flash({ notificacao: 'Cliente cadastrado com sucesso!' })
     }
 
     return response.redirect('/clientes')

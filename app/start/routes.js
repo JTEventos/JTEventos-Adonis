@@ -43,6 +43,15 @@ Route.post('/clientes/salvar/:id', 'ClienteController.salvar')
 Route.get('/clientes/deletar/:id', 'ClienteController.deletar')
 Route.get('/clientes/detalhar/:id', 'ClienteController.detalhar')
 
+//Usuários
+Route.get('/usuarios', 'UsuarioController.listar')
+Route.get('/usuarios/cadastrar', 'UsuarioController.cadastrar')
+Route.post('/usuarios/salvar', 'UsuarioController.salvar')
+Route.post('/usuarios/salvar/:id', 'UsuarioController.salvar')
+Route.get('/usuarios/alterar/:id', 'UsuarioController.alterar')
+Route.post('/usuarios/salvar/:id', 'UsuarioController.salvar')
+Route.get('/usuarios/detalhar/:id', 'UsuarioController.detalhar')
+
 //Códigos de erro
 Route.get('/401', 'ErrorController.401')
 Route.get('/404', 'ErrorController.404')

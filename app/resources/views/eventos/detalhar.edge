@@ -8,8 +8,7 @@
       <h1 class="title text-center">Detalhamento de Evento</h1>
     </div>
 
-    <form action="/eventos/visualizar/{{ evento.id }}" method="GET">
-      {{csrfField()}}
+    <div class="formulario">
       <div class="label-view">
         <label><strong>ID:</strong> {{ evento.id }}</label>
       </div>
@@ -53,7 +52,7 @@
           <a href="/eventos/deletar/{{ evento.id }}" class="button is-danger is-light">Deletar</a>
         </button>
       </div>
-    </form>
+    </div>
   </div>
 
 @endsection

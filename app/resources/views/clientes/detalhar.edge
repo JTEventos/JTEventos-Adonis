@@ -8,8 +8,7 @@
       <h1 class="title text-center">Detalhamento de Cliente</h1>
     </div>
 
-    <form action="/clientes/visualizar/{{ cliente.id }}" method="GET">
-      {{csrfField()}}
+    <div class="formulario">
       <div class="label-view"><strong></strong>
         <label><strong>ID:</strong> {{ cliente.id }}</label>
       </div>
@@ -61,7 +60,8 @@
           <a href="/clientes/deletar/{{ cliente.id }}" class="button is-danger is-light">Deletar</a>
         </button>
       </div>
-    </form>
+    </div>
+
   </div>
 
 @endsection

@@ -1,0 +1,54 @@
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Usuários')
+
+  <div class="container">
+    @if(old('notificacao'))
+    <div class="notification is-danger">
+        <button class="delete"></button>
+        {{old('notificacao')}}
+    </div>
+    @endif
+
+    <div class="line">
+      <h1 class="title text-center">Cadastro de Usuários</h1>
+    </div>
+
+    <form action="/usuarios/salvar" method="POST">
+      {{csrfField()}}
+      <div class="notnull-alert">
+        <span>Campos com <strong class="notnull">*</strong> possuem preenchimento obrigatório.</span>
+      </div>
+
+      <div class="input-new">
+        <label for="nome" class="label">Nome <strong class="notnull">*</strong>:</label>
+        <input type="text" name="nome" id="nome" class="input is-info" autocomplete="off">
+      </div>
+
+      <div class="input-new">
+        <label for="usuario" class="label">Usuário <strong class="notnull">*</strong>:</label>
+        <input type="text" name="usuario" id="usuario" class="input is-info" autocomplete="off">
+      </div>
+
+      <div class="input-new">
+        <label for="senha" class="label">Senha <strong class="notnull">*</strong>:</label>
+        <input type="password" name="senha" id="senha" class="input is-info" autocomplete="off">
+      </div>
+
+      <div class="input-new">
+        <label for="cnf_senha" class="label">Confirmar senha <strong class="notnull">*</strong>:</label>
+        <input type="password" name="cnf_senha" id="cnf_senha" class="input is-info" autocomplete="off">
+      </div>
+
+      <div class="buttons">
+        <button class="button is-primary is-light" type="submit">Cadastrar</button>
+        <button class="button is-danger is-light">
+          <a href="/usuarios" class="button is-danger is-light">Cancelar</a>
+        </button>
+        <button class="button" type="reset">Limpar</button>
+      </div>
+    </form>
+  </div>
+
+@endsection

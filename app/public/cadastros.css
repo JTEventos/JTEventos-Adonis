@@ -9,7 +9,8 @@
   margin-bottom: 20px;
 }
 
-form {
+form,
+.formulario {
   margin: auto;
   width: 30%;
 }
