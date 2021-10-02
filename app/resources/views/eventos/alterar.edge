@@ -2,44 +2,65 @@
 
 @section('body')
   @set('title', 'Eventos')
-  <h1>Alterar Evento</h1>
-  <form action="/eventos/salvar/{{ evento.id }}" method="POST">
-    {{csrfField()}}
-    <label for="cliente">Código do Cliente:</label>
-    <input type="text" name="cliente" id="cliente" value="{{ evento.id_cliente }}">
 
-    <br />
-    <br />
+  <div class="container">
+    <div class="line">
+      <h1 class="title text-center">Alteração de Evento</h1>
+    </div>
 
-    <label for="nome">Nome do Evento:</label>
-    <input type="text" name="nome" id="nome" value="{{ evento.nome_evento }}">
+    <form action="/eventos/salvar/{{ evento.id }}" method="POST">
+      {{csrfField()}}
+      <div class="notnull-alert">
+        <span>Campos com <strong class="notnull">*</strong> possuem preenchimento obrigatório.</span>
+      </div>
 
-    <br />
-    <br />
+      <div class="label-id">
+        <label class="label">ID: {{ evento.id }}</label>
+      </div>
 
-    <label for="dt_ini">Data de início:</label>
-    <input type="datetime" name="dt_ini" id="dt_ini" value="{{ evento.data_inicio }}">
+      <div class="label-id">
+        <label class="label">ID Cliente: {{ evento.id_cliente }}</label>
+      </div>
 
-    <br />
-    <br />
+      <hr>
 
-    <label for="dt_fim">Data de fim:</label>
-    <input type="datetime" name="dt_fim" id="dt_fim" value="{{ evento.data_fim }}">
+      <div class="input-new">
+        <label for="nome" class="label">Nome do Evento <strong class="notnull">*</strong>:</label>
+        <input type="text" name="nome" id="nome" class="input is-info" value="{{ evento.nome_evento }}" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="dt_ini" class="label">Data de início <strong class="notnull">*</strong>:</label>
+        <input type="date" name="dt_ini" id="dt_ini" class="input is-info" value="{{ evento.data_inicio }}" autocomplete="off">
+      </div>
 
-    <label for="convidados">Lista de convidados:</label>
-    <input type="text" name="convidados" id="convidados" value="{{ evento.lista_convidados }}">
+      <div class="input-new">
+        <label for="hr_ini" class="label">Hora de início <strong class="notnull">*</strong>:</label>
+        <input type="time" name="hr_ini" id="hr_ini" class="input is-info" value="{{ evento.hora_inicio }}" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="dt_fim" class="label">Data de fim <strong class="notnull">*</strong>:</label>
+        <input type="date" name="dt_fim" id="dt_fim" class="input is-info" value="{{ evento.data_fim }}" autocomplete="off">
+      </div>
 
-    <button type="submit">
-        <span>Alterar</span>
-    </button>
-    <button type="reset">
-        <span>Limpar</span>
-    </button>
-  </form>
+      <div class="input-new">
+        <label for="hr_fim" class="label">Hora de fim <strong class="notnull">*</strong>:</label>
+        <input type="time" name="hr_fim" id="hr_fim" class="input is-info" value="{{ evento.hora_fim }}" autocomplete="off">
+      </div>
+
+      <div class="input-new">
+        <label for="convidados" class="label">Lista de convidados:</label>
+        <textarea name="convidados" id="convidados" rows="5" class="textarea is-info" autocomplete="off">{{ evento.lista_convidados }}</textarea>
+      </div>
+
+      <div class="buttons">
+        <button class="button is-primary is-light" type="submit">Atualizar</button>
+        <button class="button is-danger is-light">
+          <a href="/eventos" class="button is-danger is-light">Cancelar</a>
+        </button>
+      </div>
+    </form>
+  </div>
+
 @endsection

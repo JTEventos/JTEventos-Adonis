@@ -2,44 +2,70 @@
 
 @section('body')
   @set('title', 'Eventos')
-  <h1>Cadastro de Eventos</h1>
-  <form action="/eventos/salvar" method="POST">
-    {{csrfField()}}
-    <label for="cliente">Código do Cliente:</label>
-    <input type="text" name="cliente" id="cliente">
 
-    <br />
-    <br />
+  <div class="container">
+    <div class="line">
+      <h1 class="title text-center">Cadastro de Eventos</h1>
+    </div>
 
-    <label for="nome">Nome do Evento:</label>
-    <input type="text" name="nome" id="nome">
+    <form action="/eventos/salvar" method="POST">
+      {{csrfField()}}
+      <div class="notnull-alert">
+        <span>Campos com <strong class="notnull">*</strong> possuem preenchimento obrigatório.</span>
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="cliente" class="label">ID Cliente <strong class="notnull">*</strong>:</label>
+        <div class="control">
+          <div class="select">
+            <select name="cliente" id="cliente" class="input is-info">
+              <option value="" disabled selected>Selecione</option>
+              @each(cliente in clientes)
+              <option value="{{ cliente.id }}">{{ cliente.id }} - {{ cliente.nome }}</option>
+              @endeach
+            </select>
+          </div>
+        </div>
+      </div>
 
-    <label for="dt_ini">Data de início:</label>
-    <input type="text" name="dt_ini" id="dt_ini">
+      <div class="input-new">
+        <label for="nome" class="label">Nome do Evento <strong class="notnull">*</strong>:</label>
+        <input type="text" name="nome" id="nome" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="dt_ini" class="label">Data de início <strong class="notnull">*</strong>:</label>
+        <input type="date" name="dt_ini" id="dt_ini" class="input is-info" autocomplete="off">
+      </div>
 
-    <label for="dt_fim">Data de fim:</label>
-    <input type="text" name="dt_fim" id="dt_fim">
+      <div class="input-new">
+        <label for="hr_ini" class="label">Hora de início <strong class="notnull">*</strong>:</label>
+        <input type="time" name="hr_ini" id="hr_ini" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="dt_fim" class="label">Data de fim <strong class="notnull">*</strong>:</label>
+        <input type="date" name="dt_fim" id="dt_fim" class="input is-info" autocomplete="off">
+      </div>
 
-    <label for="convidados">Lista de convidados:</label>
-    <input type="text" name="convidados" id="convidados">
+      <div class="input-new">
+        <label for="hr_fim" class="label">Hora de fim <strong class="notnull">*</strong>:</label>
+        <input type="time" name="hr_fim" id="hr_fim" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="convidados" class="label">Lista de convidados:</label>
+        <textarea name="convidados" id="convidados" rows="5" class="textarea is-info" autocomplete="off"></textarea>
+      </div>
 
-    <button type="submit">
-        <span>Cadastrar</span>
-    </button>
-    <button type="reset">
-        <span>Limpar</span>
-    </button>
-  </form>
+      <div class="buttons">
+        <button class="button is-primary is-light" type="submit">Cadastrar</button>
+        <button class="button is-danger is-light">
+          <a href="/eventos" class="button is-danger is-light">Cancelar</a>
+        </button>
+        <button class="button" type="reset">Limpar</button>
+      </div>
+    </form>
+  </div>
+
 @endsection

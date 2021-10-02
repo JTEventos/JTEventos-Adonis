@@ -1,0 +1,33 @@
+/* Este arquivo é responsável pelo layout das telas cadastrar.edge e alterar.edge */
+
+.notnull {
+  color: #FF0000;
+}
+
+.notnull-alert {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  margin: auto;
+  width: 30%;
+}
+
+.input-new input,
+.input-new textarea,
+.input-new .select {
+  width: 100%;
+}
+
+.input-new label {
+  position: relative;
+}
+
+form .buttons {
+  margin-top: 10px;
+}
+
+.label-id {
+  font-weight: bold;
+}

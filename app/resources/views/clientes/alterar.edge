@@ -2,86 +2,99 @@
 
 @section('body')
   @set('title', 'Clientes')
-  <h1>Alterar Cliente</h1>
-  <form action="/clientes/salvar/{{ cliente.id }}" method="POST">
-    {{csrfField()}}
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" value="{{ cliente.nome }}">
 
-    <br />
-    <br />
+  <div class="container">
+    <div class="line">
+      <h1 class="title text-center">Alteração de Cliente</h1>
+    </div>
 
-    <label for="cpf">CPF:</label>
-    <input type="text" name="cpf" id="cpf" value="{{ cliente.cpf }}">
+    <form action="/clientes/salvar/{{ cliente.id }}" method="POST">
+      {{csrfField()}}
+      <div class="notnull-alert">
+        <span>Campos com <strong class="notnull">*</strong> possuem preenchimento obrigatório.</span>
+      </div>
 
-    <br />
-    <br />
+      <div class="label-id">
+        <label class="label">ID: {{ cliente.id }}</label>
+      </div>
 
-    <label for="email">E-mail:</label>
-    <input type="text" name="email" id="email" value="{{ cliente.email }}">
+      <hr>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="nome" class="label">Nome <strong class="notnull">*</strong>:</label>
+        <input type="text" name="nome" id="nome" value="{{ cliente.nome }}" class="input is-info" autocomplete="off">
+      </div>
 
-    <label for="tel_celular">Tel. Celular:</label>
-    <input type="text" name="tel_celular" id="tel_celular" value="{{ cliente.tel_celular }}">
+      <div class="input-new">
+        <label for="cpf" class="label">CPF <strong class="notnull">*</strong>:</label>
+        <input type="text" name="cpf" id="cpf" value="{{ cliente.cpf }}" pattern="[0-9]{3}\.[0-9]{3}.[0-9]{3}-[0-9]{2,4}" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="email" class="label">E-mail:</label>
+        <input type="text" name="email" id="email" value="{{ cliente.email }}" class="input is-info" autocomplete="off">
+      </div>
 
-    <label for="tel_fixo">Tel. Fixo:</label>
-    <input type="text" name="tel_fixo" id="tel_fixo" value="{{ cliente.tel_fixo }}">
+      <div class="input-new">
+        <label for="tel_celular" class="label">Tel. Celular:</label>
+        <input type="text" name="tel_celular" id="tel_celular" value="{{ cliente.tel_celular }}" class="input is-info" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{5,4}" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="tel_fixo" class="label">Tel. Fixo:</label>
+        <input type="text" name="tel_fixo" id="tel_fixo" value="{{ cliente.tel_fixo }}" class="input is-info" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{5,4}" autocomplete="off">
+      </div>
 
-    <label for="cep">CEP:</label>
-    <input type="text" name="cep" id="cep" value="{{ cliente.cep }}">
+      <div class="input-new">
+        <label for="cep" class="label">CEP <strong class="notnull">*</strong>:</label>
+        <input type="text" name="cep" id="cep" value="{{ cliente.cep }}" maxlength="8" onblur="pesquisaCep(this.value);" pattern="[0-9]{5}\-[0-9]{3,4}" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="logradouro" class="label">Logradouro:</label>
+        <div class="control">
+          <input type="text" name="logradouro" id="logradouro" value="{{ cliente.logradouro }}" class="input" readonly>
+        </div>
+      </div>
 
-    <label for="logradouro">Logradouro:</label>
-    <input type="text" name="logradouro" id="logradouro" value="{{ cliente.logradouro }}">
+      <div class="input-new">
+        <label for="numero" class="label">Número <strong class="notnull">*</strong>:</label>
+        <input type="text" name="numero" id="numero" value="{{ cliente.numero }}" class="input is-info" autocomplete="off">
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="complemento" class="label">Complemento:</label>
+        <input type="text" name="complemento" id="complemento" value="{{ cliente.complemento }}" class="input is-info" autocomplete="off">
+      </div>
 
-    <label for="numero">Número:</label>
-    <input type="text" name="numero" id="numero" value="{{ cliente.numero }}">
+      <div class="input-new">
+        <label for="bairro" class="label">Bairro:</label>
+        <div class="control">
+          <input type="text" name="bairro" id="bairro" value="{{ cliente.bairro }}" class="input" readonly>
+        </div>
+      </div>
 
-    <br />
-    <br />
+      <div class="input-new">
+        <label for="cidade" class="label">Cidade:</label>
+        <div class="control">
+          <input type="text" name="cidade" id="cidade" value="{{ cliente.cidade }}" class="input" readonly>
+        </div>
+      </div>
 
-    <label for="complemento">Complemento:</label>
-    <input type="text" name="complemento" id="complemento" value="{{ cliente.complemento }}">
+      <div class="input-new">
+        <label for="estado" class="label">UF:</label>
+        <div class="control">
+          <input type="text" name="estado" id="estado" value="{{ cliente.estado }}" max="2" class="input" readonly>
+        </div>
+      </div>
 
-    <br />
-    <br />
+      <div class="buttons">
+        <button class="button is-primary is-light" type="submit">Atualizar</button>
+        <button class="button is-danger is-light">
+          <a href="/clientes" class="button is-danger is-light">Cancelar</a>
+        </button>
+      </div>
+    </form>
+  </div>
 
-    <label for="bairro">Bairro:</label>
-    <input type="text" name="bairro" id="bairro" value="{{ cliente.bairro }}">
-
-    <br />
-    <br />
-
-    <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" id="cidade" value="{{ cliente.cidade }}">
-
-    <br />
-    <br />
-
-    <label for="estado">Estado:</label>
-    <input type="text" name="estado" id="estado" value="{{ cliente.estado }}">
-
-    <br />
-    <br />
-
-    <button type="submit">
-        <span>Alterar</span>
-    </button>
-    <button type="reset">
-        <span>Limpar</span>
-    </button>
-  </form>
 @endsection

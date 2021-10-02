@@ -1,0 +1,67 @@
+@layout('./layouts/index')
+
+@section('body')
+  @set('title', 'Clientes')
+
+  <div class="container">
+    <div class="line">
+      <h1 class="title text-center">Detalhamento de Cliente</h1>
+    </div>
+
+    <form action="/clientes/visualizar/{{ cliente.id }}" method="GET">
+      {{csrfField()}}
+      <div class="label-view"><strong></strong>
+        <label><strong>ID:</strong> {{ cliente.id }}</label>
+      </div>
+
+      <hr>
+
+      <div class="label-view">
+        <label><strong>Nome:</strong><br>
+          {{ cliente.nome }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>CPF:</strong><br>
+          {{ cliente.cpf }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>E-mail:</strong><br>
+          {{ cliente.email }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>Tel. Celular:</strong><br>
+          {{ cliente.tel_celular }}</label>
+      </div>
+
+      <div class="label-view">
+        <label><strong>Tel. Fixo:</strong><br>
+          {{ cliente.tel_fixo }}</label>
+      </div>
+
+      <hr>
+
+      <div class="label-view">
+        <label><strong>Endereço:</strong><br>
+          {{ cliente.logradouro }}, {{ cliente.numero }}, {{ cliente.complemento }}<br>
+          {{ cliente.bairro }} - {{ cliente.cidade }}/{{ cliente.estado }}<br>
+          {{ cliente.cep }}</label>
+      </div>
+
+      <div class="buttons">
+        <button class="button is-primary is-light">
+          <a href="/clientes" class="button is-primary is-light">Voltar</a>
+        </button>
+        <button class="button is-warning is-light">
+          <a href="/clientes/alterar/{{ cliente.id }}" class="button is-warning is-light">Alterar</a>
+        </button>
+        <button class="button is-danger is-light">
+          <a href="/clientes/deletar/{{ cliente.id }}" class="button is-danger is-light">Deletar</a>
+        </button>
+      </div>
+    </form>
+  </div>
+
+@endsection

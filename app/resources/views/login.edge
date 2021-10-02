@@ -3,34 +3,40 @@
 @section('body')
     @set('title', 'Login')
 
-    @if(old('notificacao'))
-    <div class="notification is-warning is-half">
-        <button class="delete"></button>
-        {{old('notificacao')}}
+    <div class="container">
+        <div class="div-login">
+            @if(old('notificacao'))
+            <div class="notification is-warning is-half">
+                <button class="delete"></button>
+                {{old('notificacao')}}
+            </div>
+            @endif
+
+            <div class="logotipo-login"></div>
+            <h1 class="title text-center">Seja bem vindo a JT Eventos</h1>
+            <h1 class="lgn text-center">Login</h1>
+
+            <form action="/login" method="POST">
+                {{csrfField()}}
+                <div class="field">
+                  <label class="label">Usuário</label>
+                  <div class="control">
+                    <input class="input is-info" type="text" name="usuario" id="usuario" autocomplete="off">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Senha</label>
+                  <div class="control">
+                    <input class="input is-info" type="password" name="senha" id="senha" autocomplete="off">
+                  </div>
+                </div>
+
+                <div class="buttons">
+                    <button class="button is-medium is-info" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
-    @endif
-
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-        {{csrfField()}}
-        <label for="usuario">Usuário:</label>
-        <input type="text" name="usuario" id="usuario">
-
-        <br />
-        <br />
-
-        <label for="senha">Senha:</label>
-        <input type="text" name="senha" id="senha">
-
-        <br />
-        <br />
-
-        <button type="submit">
-            <span>Login</span>
-        </button>
-        <button type="reset">
-            <span>Limpar</span>
-        </button>
-    </form>
 
 @endsection

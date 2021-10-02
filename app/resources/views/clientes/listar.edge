@@ -1,9 +1,9 @@
 @layout('./layouts/index')
 
 @section('body')
-    @set('title', 'Clientes')
-    <h1>Clientes</h1>
+  @set('title', 'Clientes')
 
+  <div class="container">
     @if(old('notificacao'))
     <div class="column is-half notification is-primary">
         <button class="delete"></button>
@@ -11,42 +11,54 @@
     </div>
     @endif
 
-    <a href="/clientes/cadastrar">Cadastrar</a>
+    <div class="line">
+      <h1 class="title text-center">Clientes</h1>
+    </div>
+
+    <div class="buttons">
+      <a href="/clientes/cadastrar" class="button is-success">
+        <strong>Cadastrar</strong>
+      </a>
+    </div>
 
     @if(clientes && clientes.length > 0)
-        <table class="table">
-            <thead>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>E-mail</th>
-                <th>Tel. Celular</th>
-                <th>Tel. Fixo</th>
-                <th>CEP</th>
-                <th>Endereço</th>
-                <th>Ações</th>
-            </thead>
+      <table class="table">
+        <thead>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>E-mail</th>
+          <th>Tel. Celular</th>
+          <th>CEP</th>
+          <th>Ações</th>
+        </thead>
 
-            @each(cliente in clientes)
-            <tr>
-                <td>{{ cliente.id }}</td>
-                <td>{{ cliente.nome }}</td>
-                <td>{{ cliente.cpf }}</td>
-                <td>{{ cliente.email }}</td>
-                <td>{{ cliente.tel_celular }}</td>
-                <td>{{ cliente.tel_fixo }}</td>
-                <td>{{ cliente.cep }}</td>
-                <td>{{ cliente.logradouro }}, {{ cliente.numero }}, {{ cliente.complemento }} - {{ cliente.bairro }}, {{ cliente.cidade }} - {{ cliente.estado }}</td>
-                <td>
-                    <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>
-                    <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
-                </td>
-            </tr>
-            @endeach
+        @each(cliente in clientes)
+        <tr>
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.cpf }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.tel_celular }}</td>
+          <td>{{ cliente.cep }}</td>
+          <td>
+            <a href="/clientes/detalhar/{{ cliente.id }}"><button class="button is-link is-small">Detalhar</button></a>
+            <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>
+            <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
+          </td>
+        </tr>
+        @endeach
 
-        </table>
+      </table>
     @else
-        <h2>Não há nenhum cliente cadastrado.</h2>
+      <div class="sem-cadastros">
+        <div class="logo"></div>
+        <div class="subtitle">
+          <p>Não há nenhum cliente cadastrado.</p>
+          <p>Clique no botão "Cadastrar" para começar.</p>
+        </div>
+      </div>
     @endif
+  </div>
 
 @endsection
