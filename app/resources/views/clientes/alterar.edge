@@ -4,6 +4,13 @@
   @set('title', 'Clientes')
 
   <div class="container">
+    @if(old('notificacao'))
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        {{ old('notificacao') }}
+      </div>
+    @endif
+
     <div class="line">
       <h1 class="title text-center">Alteração de Cliente</h1>
     </div>

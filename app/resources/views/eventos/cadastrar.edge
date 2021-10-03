@@ -4,6 +4,13 @@
   @set('title', 'Eventos')
 
   <div class="container">
+    @if(old('notificacao'))
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        {{ old('notificacao') }}
+      </div>
+    @endif
+
     <div class="line">
       <h1 class="title text-center">Cadastro de Eventos</h1>
     </div>
@@ -16,16 +23,14 @@
 
       <div class="input-new">
         <label for="cliente" class="label">ID Cliente <strong class="notnull">*</strong>:</label>
-        <div class="control">
-          <div class="select is-info">
-            <select name="cliente" id="cliente" class="select is-info">
-              <option value="" disabled selected>Selecione</option>
-              @each(cliente in clientes)
-              <option value="{{ cliente.id }}">{{ cliente.id }} - {{ cliente.nome }}</option>
-              @endeach
-            </select>
-          </div>
-        </div>
+        <input list="cliente" name="cliente" class="input is-info" autocomplete="off" placeholder="Selecione">
+        <datalist id="cliente">
+
+          @each(cliente in clientes)
+            <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+          @endeach
+
+        </datalist>
       </div>
 
       <div class="input-new">
@@ -34,23 +39,13 @@
       </div>
 
       <div class="input-new">
-        <label for="dt_ini" class="label">Data de início <strong class="notnull">*</strong>:</label>
-        <input type="date" name="dt_ini" id="dt_ini" class="input is-info" autocomplete="off">
+        <label for="dt_ini" class="label">Data/Hora de início <strong class="notnull">*</strong>:</label>
+        <input type="datetime-local" name="dt_ini" id="dt_ini" class="input is-info" autocomplete="off">
       </div>
 
       <div class="input-new">
-        <label for="hr_ini" class="label">Hora de início <strong class="notnull">*</strong>:</label>
-        <input type="time" name="hr_ini" id="hr_ini" class="input is-info" autocomplete="off">
-      </div>
-
-      <div class="input-new">
-        <label for="dt_fim" class="label">Data de fim <strong class="notnull">*</strong>:</label>
-        <input type="date" name="dt_fim" id="dt_fim" class="input is-info" autocomplete="off">
-      </div>
-
-      <div class="input-new">
-        <label for="hr_fim" class="label">Hora de fim <strong class="notnull">*</strong>:</label>
-        <input type="time" name="hr_fim" id="hr_fim" class="input is-info" autocomplete="off">
+        <label for="dt_fim" class="label">Data/Hora de fim <strong class="notnull">*</strong>:</label>
+        <input type="datetime-local" name="dt_fim" id="dt_fim" class="input is-info" autocomplete="off">
       </div>
 
       <div class="input-new">

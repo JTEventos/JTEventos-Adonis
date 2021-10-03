@@ -35,20 +35,23 @@ class EventoController {
     evento.id_cliente = request.input('cliente')
     evento.nome_evento = request.input('nome')
     evento.data_inicio = request.input('dt_ini')
-    evento.hora_inicio = request.input('hr_ini')
     evento.data_fim = request.input('dt_fim')
-    evento.hora_fim = request.input('hr_fim')
     evento.lista_convidados = request.input('convidados')
 
-    await evento.save()
-
-    if (params.id) {
-      session.flash({ notificacao: 'Evento alterado com sucesso!' })
+    if (request.input('cliente') == null || request.input('nome') == null || request.input('dt_ini') == null || request.input('dt_fim') == null) {
+      session.flash({ notificacao: 'Preencha todos os campos obrigatórios antes de salvar o registro.' })
+      return response.redirect('back')
     } else {
-      session.flash({ notificacao: 'Evento cadastrado com sucesso!' })
-    }
+      await evento.save()
 
-    return response.redirect('/eventos')
+      if (params.id) {
+        session.flash({ notificacao: 'Evento alterado com sucesso!' })
+      } else {
+        session.flash({ notificacao: 'Evento cadastrado com sucesso!' })
+      }
+
+      return response.redirect('/eventos')
+    }
   }
 
   async deletar({ params, session, response }) {

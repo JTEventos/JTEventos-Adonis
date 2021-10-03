@@ -4,6 +4,13 @@
   @set('title', 'Eventos')
 
   <div class="container">
+    @if(old('notificacao'))
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        {{ old('notificacao') }}
+      </div>
+    @endif
+
     <div class="line">
       <h1 class="title text-center">Alteração de Evento</h1>
     </div>
@@ -18,11 +25,12 @@
         <label class="label">ID: {{ evento.id }}</label>
       </div>
 
-      <div class="label-id">
-        <label class="label">ID Cliente: {{ evento.id_cliente }}</label>
-      </div>
-
       <hr>
+
+      <div class="input-new">
+        <label for="cliente" class="label">ID Cliente <strong class="notnull">*</strong>:</label>
+        <input id="cliente" name="cliente" class="input" value="{{ evento.id_cliente }}" readonly>
+      </div>
 
       <div class="input-new">
         <label for="nome" class="label">Nome do Evento <strong class="notnull">*</strong>:</label>
@@ -30,23 +38,13 @@
       </div>
 
       <div class="input-new">
-        <label for="dt_ini" class="label">Data de início <strong class="notnull">*</strong>:</label>
-        <input type="date" name="dt_ini" id="dt_ini" class="input is-info" value="{{ evento.data_inicio }}" autocomplete="off">
+        <label for="dt_ini" class="label">Data/Hora de início <strong class="notnull">*</strong>:</label>
+        <input type="datetime-local" name="dt_ini" id="dt_ini" class="input is-info" value="{{ evento.data_inicio }}" autocomplete="off">
       </div>
 
       <div class="input-new">
-        <label for="hr_ini" class="label">Hora de início <strong class="notnull">*</strong>:</label>
-        <input type="time" name="hr_ini" id="hr_ini" class="input is-info" value="{{ evento.hora_inicio }}" autocomplete="off">
-      </div>
-
-      <div class="input-new">
-        <label for="dt_fim" class="label">Data de fim <strong class="notnull">*</strong>:</label>
-        <input type="date" name="dt_fim" id="dt_fim" class="input is-info" value="{{ evento.data_fim }}" autocomplete="off">
-      </div>
-
-      <div class="input-new">
-        <label for="hr_fim" class="label">Hora de fim <strong class="notnull">*</strong>:</label>
-        <input type="time" name="hr_fim" id="hr_fim" class="input is-info" value="{{ evento.hora_fim }}" autocomplete="off">
+        <label for="dt_fim" class="label">Data/Hora de fim <strong class="notnull">*</strong>:</label>
+        <input type="datetime-local" name="dt_fim" id="dt_fim" class="input is-info" value="{{ evento.data_fim }}" autocomplete="off">
       </div>
 
       <div class="input-new">

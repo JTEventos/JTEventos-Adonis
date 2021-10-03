@@ -31,10 +31,8 @@ create table eventos /*(mandar por e-mail a confirmação do evento)*/ (
     id int not null auto_increment,
     id_cliente int not null,
     nome_evento varchar(100) not null,
-    data_inicio date not null,
-    hora_inicio time not null,
-    data_fim date not null,
-    hora_fim time not null,
+    data_inicio datetime not null,
+    data_fim datetime not null,
     lista_convidados varchar(4000),
 primary key (id),
 constraint fk_eventocliente foreign key (id_cliente) references clientes(id)
@@ -42,8 +40,8 @@ constraint fk_eventocliente foreign key (id_cliente) references clientes(id)
 
 insert into usuarios (nome, usuario, senha) values ('Administrador', 'admin', '12345');
 
-INSERT INTO clientes (id, nome, cpf, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (1, 'Jonas Araujo', '00000000001', '91000000', 'Avenida', '123', 'Casa', 'Bairro', 'Cidade', 'SC', 'jonas@teste.com', '51999999999', NULL);
-INSERT INTO clientes (id, nome, cpf, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (2, 'Thiago', '00000000002', '91000001', 'Rua', '321', 'Apartamento', 'Bairro', 'Cidade', 'RS', 'thiago@teste.com', '51999999999', NULL);
+INSERT INTO clientes (id, nome, cpf, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (1, 'Jonas Pohlmann Araujo', '000.000.000-01', '91000-000', 'Avenida', '123', 'Casa', 'Bairro', 'Cidade', 'SC', 'jonas@teste.com', '(51) 99999-9999', NULL);
+INSERT INTO clientes (id, nome, cpf, cep, logradouro, numero, complemento, bairro, cidade, estado, email, tel_celular, tel_fixo) VALUES (2, 'Thiago Martins Proença', '000.000.000-02', '91000-001', 'Rua', '321', 'Apartamento', 'Bairro', 'Cidade', 'RS', 'thiago@teste.com', '(51) 99999-9999', NULL);
 
-INSERT INTO eventos (id_cliente, nome_evento, data_inicio, hora_inicio, data_fim, hora_fim, lista_convidados) VALUES (1, 'Evento 1', '2021-09-22', '00:00:00', '2021-09-22', '00:00:00', NULL);
-INSERT INTO eventos (id_cliente, nome_evento, data_inicio, hora_inicio, data_fim, hora_fim, lista_convidados) VALUES (2, 'Evento 2', '2021-09-22', '00:00:00', '2021-09-22', '00:00:00', NULL);
+INSERT INTO eventos (id_cliente, nome_evento, data_inicio, data_fim, lista_convidados) VALUES (1, 'Evento 1', '2021-09-22 00:00:00', '2021-09-22 00:00:00', NULL);
+INSERT INTO eventos (id_cliente, nome_evento, data_inicio, data_fim, lista_convidados) VALUES (2, 'Evento 2', '2021-09-22 00:00:00', '2021-09-22 00:00:00', NULL);

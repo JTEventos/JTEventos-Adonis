@@ -5,10 +5,17 @@
 
   <div class="container">
     @if(old('notificacao'))
-    <div class="notification is-success is-light">
+      <div class="notification is-success is-light">
         <button class="delete"></button>
         {{old('notificacao')}}
-    </div>
+      </div>
+    @endif
+
+    @if(old('erro'))
+      <div class="notification is-warning is-light">
+        <button class="delete"></button>
+        {{old('erro')}}
+      </div>
     @endif
 
     <div class="line">
@@ -32,20 +39,21 @@
         </thead>
 
         @each(cliente in clientes)
-        <tr>
-          <td>{{ cliente.id }}</td>
-          <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.tel_celular }}</td>
-          <td>
-            <a href="/clientes/detalhar/{{ cliente.id }}"><button class="button is-link is-small">Detalhar</button></a>
-            <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>
-            <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
-          </td>
-        </tr>
+          <tr>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.tel_celular }}</td>
+            <td>
+              <a href="/clientes/detalhar/{{ cliente.id }}"><button class="button is-link is-small">Detalhar</button></a>
+              <a href="/clientes/alterar/{{ cliente.id }}"><button class="button is-link is-small">Alterar</button></a>
+              <a href="/clientes/deletar/{{ cliente.id }}"><button class="button is-link is-small">Deletar</button></a>
+            </td>
+          </tr>
         @endeach
 
       </table>
+
     @else
       <div class="sem-cadastros">
         <div class="logo"></div>
@@ -55,6 +63,7 @@
         </div>
       </div>
     @endif
+
   </div>
 
 @endsection

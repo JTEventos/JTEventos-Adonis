@@ -2,6 +2,7 @@
 
 const LoginController = use('App/Controllers/Http/LoginController')
 const Cliente = use('App/Models/Cliente')
+const Evento = use('App/Models/Evento')
 
 class ClienteController {
   async listar({ view, session, response }) {
@@ -36,22 +37,33 @@ class ClienteController {
     cliente.cidade = request.input('cidade')
     cliente.estado = request.input('estado')
 
-    await cliente.save()
-
-    if (params.id) {
-      session.flash({ notificacao: 'Cliente alterado com sucesso!' })
+    if (request.input('nome') == null || request.input('cpf') == null || request.input('email') == null || request.input('tel_celular') == null || request.input('cep') == null || request.input('numero') == null ) {
+      session.flash({ notificacao: 'Preencha todos os campos obrigatórios antes de salvar o registro.' })
+      return response.redirect('back')
     } else {
-      session.flash({ notificacao: 'Cliente cadastrado com sucesso!' })
-    }
+      await cliente.save()
 
-    return response.redirect('/clientes')
+      if (params.id) {
+        session.flash({ notificacao: 'Cliente alterado com sucesso!' })
+      } else {
+        session.flash({ notificacao: 'Cliente cadastrado com sucesso!' })
+      }
+
+      return response.redirect('/clientes')
+    }
   }
 
   async deletar({ params, session, response }) {
     const cliente = await Cliente.find(params.id)
+    const evento = await Evento.all()
 
-    await cliente.delete()
-    session.flash({ notificacao: 'Cliente removido com sucesso!' })
+    // Verificar lógica para não permitir excluir um Cliente vinculado em um Evento.
+    if (!evento.id_cliente == cliente.id) {
+      session.flash({ erro: 'Este cliente está vinculado em um evento. Remova o evento antes de remover este cliente.' })
+    } else {
+      await cliente.delete()
+      session.flash({ notificacao: 'Cliente removido com sucesso!' })
+    }
 
     return response.redirect('/clientes')
   }
