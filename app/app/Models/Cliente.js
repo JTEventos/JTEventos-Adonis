@@ -11,12 +11,6 @@ class Cliente extends Model {
   static get updatedAtColumn() {
     return null
   }
-
-  static formatFields(value) {
-    if (value == null || value == undefined) {
-      return value = ''
-    }
-  }
 }
 
 module.exports = Cliente

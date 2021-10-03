@@ -11,6 +11,13 @@
       </div>
     @endif
 
+    @if(old('atencao'))
+    <div class="notification is-warning">
+      <button class="delete"></button>
+      {{ old('atencao') }}
+    </div>
+  @endif
+
     <div class="line">
       <h1 class="title text-center">Usuários</h1>
     </div>

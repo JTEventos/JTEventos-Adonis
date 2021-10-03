@@ -1,5 +1,7 @@
 'use strict'
 
+const { validaCamposObrigatorios, validaSucesso } = require("../../Models/Common")
+
 const LoginController = use('App/Controllers/Http/LoginController')
 const Evento = use('App/Models/Evento')
 const Cliente = use('App/Models/Cliente')
@@ -10,11 +12,6 @@ class EventoController {
     LoginController.logado(session, response)
 
     const eventos = await Evento.all()
-
-    // const eventos = await Evento.query('eventos as e')
-    //     .innerJoin('clientes as c', 'id_cliente', 'c.id')
-    //     .orderBy('data_inicio', 'desc')
-    // .fetch()
 
     return view.render('eventos/listar', { eventos: eventos.toJSON() })
   }
@@ -39,23 +36,18 @@ class EventoController {
     evento.lista_convidados = request.input('convidados')
 
     if (request.input('cliente') == null || request.input('nome') == null || request.input('dt_ini') == null || request.input('dt_fim') == null) {
-      session.flash({ notificacao: 'Preencha todos os campos obrigatórios antes de salvar o registro.' })
-      return response.redirect('back')
+      validaCamposObrigatorios(session, response)
     } else {
       await evento.save()
 
-      if (params.id) {
-        session.flash({ notificacao: 'Evento alterado com sucesso!' })
-      } else {
-        session.flash({ notificacao: 'Evento cadastrado com sucesso!' })
-      }
-
+      validaSucesso(params, session, 'Evento')
       return response.redirect('/eventos')
     }
   }
 
   async deletar({ params, session, response }) {
     const evento = await Evento.find(params.id)
+
     await evento.delete()
     session.flash({ notificacao: 'Evento removido com sucesso!' })
     return response.redirect('/eventos')

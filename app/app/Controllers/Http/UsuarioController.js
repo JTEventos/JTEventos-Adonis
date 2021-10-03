@@ -1,5 +1,8 @@
 'use strict'
 
+const { validaSucesso, validaCamposObrigatorios, registroDuplicado } = require("../../Models/Common");
+const { validaUsuario, validaSenha } = require("../../Models/Usuario");
+
 const LoginController = use('App/Controllers/Http/LoginController')
 const Usuario = use('App/Models/Usuario')
 
@@ -27,31 +30,35 @@ class UsuarioController {
     usuario.usuario = request.input('usuario')
     usuario.senha = request.input('senha')
 
-    if (request.input('senha') != request.input('cnf_senha')) {
-      session.flash({ notificacao: 'As senhas devem ser iguais.' })
-      return response.redirect('back')
+    if (request.input('nome') == null || request.input('usuario') == null || request.input('senha') == null) {
+      validaCamposObrigatorios(session, response)
+    } else if (request.input('senha') != request.input('cnf_senha')) {
+      validaSenha(session, response)
     } else {
-      await usuario.save()
+      try {
+        await usuario.save()
 
-      if (params.id) {
-        session.flash({ notificacao: 'Usuário alterado com sucesso!' })
-      } else {
-        session.flash({ notificacao: 'Usuário cadastrado com sucesso!' })
+        validaSucesso(params, session, 'Usuário')
+        return response.redirect('/usuarios')
+      } catch (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+          registroDuplicado(session, response, 'username')
+        }
       }
-
-      return response.redirect('/usuarios')
     }
   }
 
-  async alterar({ params, view }) {
+  async alterar({ session, response, params, view }) {
     const usuario = await Usuario.find(params.id)
 
+    validaUsuario(session, response, usuario, 'alterar')
     return view.render('usuarios/alterar', { usuario: usuario.toJSON() })
   }
 
-  async detalhar({ params, view }) {
+  async detalhar({ session, response, params, view }) {
     const usuario = await Usuario.find(params.id)
 
+    validaUsuario(session, response, usuario, 'detalhar')
     return view.render('usuarios/detalhar', { usuario: usuario.toJSON() })
   }
 }
