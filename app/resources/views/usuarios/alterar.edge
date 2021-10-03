@@ -18,15 +18,20 @@
         <label class="label">ID: {{ usuario.id }}</label>
       </div>
 
-      <div class="label-id">
+      {{--  <div class="label-id">
         <label class="label">Usuário: {{ usuario.usuario }}</label>
-      </div>
+      </div>  --}}
 
       <hr>
 
       <div class="input-new">
         <label for="nome" class="label">Nome <strong class="notnull">*</strong>:</label>
         <input type="text" name="nome" id="nome" class="input is-info" value="{{ usuario.nome }}" autocomplete="off">
+      </div>
+
+      <div class="input-new">
+        <label for="usuario" class="label">Usuário <strong class="notnull">*</strong>:</label>
+        <input type="text" name="usuario" id="usuario" class="input" value="{{ usuario.usuario }}" readonly>
       </div>
 
       <div class="input-new">

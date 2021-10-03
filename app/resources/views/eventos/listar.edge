@@ -5,10 +5,10 @@
 
   <div class="container">
     @if(old('notificacao'))
-    <div class="notification is-success">
+      <div class="notification is-success">
         <button class="delete"></button>
-        {{old('notificacao')}}
-    </div>
+        {{ old('notificacao') }}
+      </div>
     @endif
 
     <div class="line">
@@ -33,29 +33,30 @@
         </thead>
 
         @each(evento in eventos)
-        <tr>
-          <td>{{ evento.id }}</td>
-          <td>{{ evento.id_cliente }}</td>
-          <td>{{ evento.nome_evento }}</td>
-          <td>{{ evento.data_inicio }} - {{ evento.hora_inicio }}</td>
-          <td>{{ evento.data_fim }} - {{ evento.hora_fim }}</td>
-          <td>
-            <a href="/eventos/detalhar/{{ evento.id }}"><button class="button is-link is-small">Detalhar</button></a>
-            <a href="/eventos/alterar/{{ evento.id }}"><button class="button is-link is-small">Alterar</button></a>
-            <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
-          </td>
-        </tr>
+          <tr>
+            <td>{{ evento.id }}</td>
+            <td>{{ evento.id_cliente }}</td>
+            <td>{{ evento.nome_evento }}</td>
+            <td>{{ evento.data_inicio }}</td>
+            <td>{{ evento.data_fim }}</td>
+            <td>
+              <a href="/eventos/detalhar/{{ evento.id }}"><button class="button is-link is-small">Detalhar</button></a>
+              <a href="/eventos/alterar/{{ evento.id }}"><button class="button is-link is-small">Alterar</button></a>
+              <a href="/eventos/deletar/{{ evento.id }}"><button class="button is-link is-small">Deletar</button></a>
+            </td>
+          </tr>
         @endeach
 
       </table>
+
     @else
-    <div class="sem-cadastros">
-      <div class="logo"></div>
-      <div class="subtitle">
-        <p>Não há nenhum evento cadastrado.</p>
-        <p>Clique no botão "Cadastrar" para começar.</p>
+      <div class="sem-cadastros">
+        <div class="logo"></div>
+        <div class="subtitle">
+          <p>Não há nenhum evento cadastrado.</p>
+          <p>Clique no botão "Cadastrar" para começar.</p>
+        </div>
       </div>
-    </div>
     @endif
 
   </div>

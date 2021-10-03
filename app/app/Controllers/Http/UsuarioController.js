@@ -29,7 +29,7 @@ class UsuarioController {
 
     if (request.input('senha') != request.input('cnf_senha')) {
       session.flash({ notificacao: 'As senhas devem ser iguais.' })
-      return response.redirect('/usuarios/cadastrar')
+      return response.redirect('back')
     } else {
       await usuario.save()
 

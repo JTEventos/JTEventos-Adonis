@@ -1,42 +1,42 @@
 @layout('./layouts/index')
 
 @section('body')
-    @set('title', 'Login')
+  @set('title', 'Login')
 
-    <div class="container">
-        <div class="div-login">
-            @if(old('notificacao'))
-            <div class="notification is-warning is-half">
-                <button class="delete"></button>
-                {{old('notificacao')}}
-            </div>
-            @endif
-
-            <div class="logotipo-login"></div>
-            <h1 class="title text-center">Seja bem vindo a JT Eventos</h1>
-            <h1 class="lgn text-center">Login</h1>
-
-            <form action="/login" method="POST">
-                {{csrfField()}}
-                <div class="field">
-                  <label class="label">Usuário</label>
-                  <div class="control">
-                    <input class="input is-info" type="text" name="usuario" id="usuario" autocomplete="off">
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label class="label">Senha</label>
-                  <div class="control">
-                    <input class="input is-info" type="password" name="senha" id="senha" autocomplete="off">
-                  </div>
-                </div>
-
-                <div class="buttons">
-                    <button class="button is-medium is-info" type="submit">Login</button>
-                </div>
-            </form>
+  <div class="container">
+    <div class="div-login">
+      @if(old('notificacao'))
+        <div class="notification is-warning is-half">
+          <button class="delete"></button>
+          {{ old('notificacao') }}
         </div>
+      @endif
+
+      <div class="logotipo-login"></div>
+      <h1 class="title text-center">Seja bem vindo a JT Eventos</h1>
+      <h1 class="lgn text-center">Login</h1>
+
+      <form action="/login" method="POST">
+        {{csrfField()}}
+        <div class="field">
+          <label class="label">Usuário</label>
+          <div class="control">
+            <input class="input is-info" type="text" name="usuario" id="usuario" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Senha</label>
+          <div class="control">
+            <input class="input is-info" type="password" name="senha" id="senha" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="buttons">
+            <button class="button is-medium is-info" type="submit">Login</button>
+        </div>
+      </form>
     </div>
+  </div>
 
 @endsection
