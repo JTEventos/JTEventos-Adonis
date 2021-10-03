@@ -1,6 +1,6 @@
 'use strict'
 
-const { validaSucesso, validaCamposObrigatorios, registroDuplicado } = require("../../Models/Common");
+const { validaSucesso, validaCamposObrigatorios, registroDuplicado, registroInvalido } = require("../../Models/Common");
 const { validaUsuario, validaSenha } = require("../../Models/Usuario");
 
 const LoginController = use('App/Controllers/Http/LoginController')
@@ -51,15 +51,24 @@ class UsuarioController {
   async alterar({ session, response, params, view }) {
     const usuario = await Usuario.find(params.id)
 
-    validaUsuario(session, response, usuario, 'alterar')
-    return view.render('usuarios/alterar', { usuario: usuario.toJSON() })
+    try {
+      validaUsuario(session, response, usuario, 'alterar')
+      return view.render('usuarios/alterar', { usuario: usuario.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Usuário', '/usuarios')
+    }
+
   }
 
   async detalhar({ session, response, params, view }) {
     const usuario = await Usuario.find(params.id)
 
-    validaUsuario(session, response, usuario, 'detalhar')
-    return view.render('usuarios/detalhar', { usuario: usuario.toJSON() })
+    try {
+      validaUsuario(session, response, usuario, 'detalhar')
+      return view.render('usuarios/detalhar', { usuario: usuario.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Usuário', '/usuarios')
+    }
   }
 }
 

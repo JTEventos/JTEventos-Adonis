@@ -9,6 +9,11 @@
         <button class="delete"></button>
         {{ old('notificacao') }}
       </div>
+    @elseif(old('atencao'))
+      <div class="notification is-warning is-light">
+        <button class="delete"></button>
+        {{old('atencao')}}
+      </div>
     @endif
 
     <div class="line">

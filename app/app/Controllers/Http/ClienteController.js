@@ -1,6 +1,6 @@
 'use strict'
 
-const { validaSucesso, validaCamposObrigatorios, registroDuplicado } = require("../../Models/Common")
+const { validaSucesso, validaCamposObrigatorios, registroDuplicado, registroInvalido } = require("../../Models/Common")
 
 const LoginController = use('App/Controllers/Http/LoginController')
 const Cliente = use('App/Models/Cliente')
@@ -60,26 +60,37 @@ class ClienteController {
 
     try {
       await cliente.delete()
+
       session.flash({ notificacao: 'Cliente removido com sucesso!' })
+      return response.redirect('/clientes')
     } catch (err) {
       if (err.code === 'ER_ROW_IS_REFERENCED_2') {
-        session.flash({ erro: 'Este cliente está vinculado em um evento. Remova todos os eventos onde este cliente está vinculado para remover este registro.' })
+        session.flash({ atencao: 'Este cliente está vinculado em um evento. Remova todos os eventos onde este cliente está vinculado para remover este registro.' })
+        return response.redirect('back')
+      } else {
+        registroInvalido(session, response, 'Cliente', '/clientes')
       }
     }
-
-    return response.redirect('/clientes')
   }
 
-  async alterar({ params, view }) {
+  async alterar({ session, response, params, view }) {
     const cliente = await Cliente.find(params.id)
 
-    return view.render('clientes/alterar', { cliente: cliente.toJSON() })
+    try {
+      return view.render('clientes/alterar', { cliente: cliente.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Cliente', '/clientes')
+    }
   }
 
-  async detalhar({ params, view }) {
+  async detalhar({ session, response, params, view }) {
     const cliente = await Cliente.find(params.id)
 
-    return view.render('clientes/detalhar', { cliente: cliente.toJSON() })
+    try {
+      return view.render('clientes/detalhar', { cliente: cliente.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Cliente', '/clientes')
+    }
   }
 }
 

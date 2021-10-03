@@ -3,8 +3,11 @@
 const Usuario = use('App/Models/Usuario')
 
 class LoginController {
-  async index({ view, session }) {
-    let usuario = session.get('logado')
+  async index({ view, session, response }) {
+    if (session.get('nome')) {
+      return response.redirect('/eventos')
+    }
+
     return view.render('login', { login: true })
   }
 
@@ -25,9 +28,12 @@ class LoginController {
       return response.redirect('/eventos')
     }
 
-    session.flash({
-      notificacao: "Usuário ou senha inválidos!"
-    })
+    if (inputUsuario == null || inputSenha == null) {
+      session.flash({ erro: 'Você deve preencher todos os campos.' })
+    } else {
+      session.flash({ notificacao: 'Usuário ou senha inválidos!' })
+    }
+
     return response.redirect('back')
   }
 
