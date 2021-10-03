@@ -4,6 +4,13 @@
   @set('title', 'Clientes')
 
   <div class="container">
+    @if(old('erro'))
+      <div class="notification is-warning is-light">
+        <button class="delete"></button>
+        {{old('erro')}}
+      </div>
+    @endif
+
     <div class="line">
       <h1 class="title text-center">Detalhamento de Cliente</h1>
     </div>
@@ -50,15 +57,9 @@
       </div>
 
       <div class="buttons">
-        <button class="button is-primary is-light">
-          <a href="/clientes" class="button is-primary is-light">Voltar</a>
-        </button>
-        <button class="button is-warning is-light">
-          <a href="/clientes/alterar/{{ cliente.id }}" class="button is-warning is-light">Alterar</a>
-        </button>
-        <button class="button is-danger is-light">
-          <a href="/clientes/deletar/{{ cliente.id }}" class="button is-danger is-light">Deletar</a>
-        </button>
+        <a href="/clientes" class="button">Voltar</a>
+        <a href="/clientes/alterar/{{ cliente.id }}" class="button">Alterar</a>
+        <a href="/clientes/deletar/{{ cliente.id }}" class="button">Deletar</a>
       </div>
     </div>
 

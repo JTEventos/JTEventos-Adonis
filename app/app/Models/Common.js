@@ -27,6 +27,11 @@ class Common extends Model {
       return value = ''
     }
   }
+
+  static registroInvalido(session, response, desc, route) {
+    session.flash({ atencao: `${desc} não localizado. Por favor, selecione um registro válido.` })
+    return response.redirect(`${route}`)
+  }
 }
 
 module.exports = Common

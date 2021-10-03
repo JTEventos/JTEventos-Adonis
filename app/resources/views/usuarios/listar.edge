@@ -9,14 +9,12 @@
         <button class="delete"></button>
         {{ old('notificacao') }}
       </div>
+    @elseif(old('atencao'))
+      <div class="notification is-warning">
+        <button class="delete"></button>
+        {{ old('atencao') }}
+      </div>
     @endif
-
-    @if(old('atencao'))
-    <div class="notification is-warning">
-      <button class="delete"></button>
-      {{ old('atencao') }}
-    </div>
-  @endif
 
     <div class="line">
       <h1 class="title text-center">Usuários</h1>
@@ -39,7 +37,7 @@
 
         @each(usuario in usuarios)
 
-        @if(usuario.id != 1)
+          @if(usuario.id != 1)
             <tr>
               <td>{{ usuario.id }}</td>
               <td>{{ usuario.nome }}</td>

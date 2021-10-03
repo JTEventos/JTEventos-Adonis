@@ -1,6 +1,6 @@
 'use strict'
 
-const { validaCamposObrigatorios, validaSucesso } = require("../../Models/Common")
+const { validaCamposObrigatorios, validaSucesso, registroInvalido } = require("../../Models/Common")
 
 const LoginController = use('App/Controllers/Http/LoginController')
 const Evento = use('App/Models/Evento')
@@ -48,21 +48,33 @@ class EventoController {
   async deletar({ params, session, response }) {
     const evento = await Evento.find(params.id)
 
-    await evento.delete()
-    session.flash({ notificacao: 'Evento removido com sucesso!' })
-    return response.redirect('/eventos')
+    try {
+      await evento.delete()
+      session.flash({ notificacao: 'Evento removido com sucesso!' })
+      return response.redirect('/eventos')
+    } catch (err) {
+      registroInvalido(session, response, 'Evento', '/eventos')
+    }
   }
 
-  async alterar({ params, view }) {
+  async alterar({ session, response, params, view }) {
     const evento = await Evento.find(params.id)
 
-    return view.render('eventos/alterar', { evento: evento.toJSON() })
+    try {
+      return view.render('eventos/alterar', { evento: evento.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Evento', '/eventos')
+    }
   }
 
-  async detalhar({ params, view }) {
+  async detalhar({ session, response, params, view }) {
     const evento = await Evento.find(params.id)
 
-    return view.render('eventos/detalhar', { evento: evento.toJSON() })
+    try {
+      return view.render('eventos/detalhar', { evento: evento.toJSON() })
+    } catch (err) {
+      registroInvalido(session, response, 'Evento', '/eventos')
+    }
   }
 }
 
