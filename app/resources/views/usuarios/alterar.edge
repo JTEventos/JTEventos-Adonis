@@ -4,11 +4,18 @@
   @set('title', 'Usuários')
 
   <div class="container">
+    @if(old('notificacao'))
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        {{ old('notificacao') }}
+      </div>
+    @endif
+
     <div class="line">
       <h1 class="title text-center">Alteração de Usuário</h1>
     </div>
 
-    <form action="/usuarios/salvar/{{ evento.id }}" method="POST">
+    <form action="/usuarios/salvar/{{ usuario.id }}" method="POST">
       {{csrfField()}}
       <div class="notnull-alert">
         <span>Campos com <strong class="notnull">*</strong> possuem preenchimento obrigatório.</span>
@@ -17,10 +24,6 @@
       <div class="label-id">
         <label class="label">ID: {{ usuario.id }}</label>
       </div>
-
-      {{--  <div class="label-id">
-        <label class="label">Usuário: {{ usuario.usuario }}</label>
-      </div>  --}}
 
       <hr>
 
@@ -31,7 +34,7 @@
 
       <div class="input-new">
         <label for="usuario" class="label">Usuário <strong class="notnull">*</strong>:</label>
-        <input type="text" name="usuario" id="usuario" class="input" value="{{ usuario.usuario }}" readonly>
+        <input type="text" name="usuario" id="usuario" class="input is-info" value="{{ usuario.usuario }}" autocomplete="off">
       </div>
 
       <div class="input-new">
