@@ -38,10 +38,16 @@ class EventoController {
     if (request.input('cliente') == null || request.input('nome') == null || request.input('dt_ini') == null || request.input('dt_fim') == null) {
       validaCamposObrigatorios(session, response)
     } else {
-      await evento.save()
+      try {
+        await evento.save()
 
-      validaSucesso(params, session, 'Evento')
-      return response.redirect('/eventos')
+        validaSucesso(params, session, 'Evento')
+        return response.redirect('/eventos')
+      } catch (err) {
+        if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+          registroInvalido(session, response, 'Usuário', 'back')
+        }
+      }
     }
   }
 
