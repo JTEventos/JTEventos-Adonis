@@ -45,7 +45,7 @@ class EventoController {
         return response.redirect('/eventos')
       } catch (err) {
         if (err.code === 'ER_NO_REFERENCED_ROW_2') {
-          registroInvalido(session, response, 'Usuário', 'back')
+          registroInvalido(session, response, 'Cliente', 'back')
         }
       }
     }
