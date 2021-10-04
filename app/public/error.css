@@ -1,0 +1,15 @@
+/* Este arquivo é responsável pelo layout da tela login.edge */
+
+.error {
+  width: 60%;
+  margin: auto;
+}
+
+.button {
+  width: 100%;
+}
+
+.buttons {
+  width: 30%;
+  margin: auto;
+}
