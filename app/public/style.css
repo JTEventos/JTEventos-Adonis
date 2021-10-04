@@ -19,11 +19,20 @@ html, body {
   text-align: center;
 }
 
-.logotipo {
+.logotp {
   background: url("/logo.png") no-repeat;
+  background-size: 100%;
+}
+
+.logotipo {
   width: 156px;
   height: 153px;
-  background-size: 100%;
   margin-top: -30px;
   margin-bottom: -65px;
+}
+
+.logotipo-gd {
+  width: 256px;
+  height: 253px;
+  margin: auto;
 }
