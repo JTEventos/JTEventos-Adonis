@@ -28,7 +28,7 @@
       <hr>
 
       <div class="input-new">
-        <label for="cliente" class="label">ID Cliente <strong class="notnull">*</strong>:</label>
+        <label for="cliente" class="label">ID Cliente:</label>
         <input id="cliente" name="cliente" class="input" value="{{ evento.id_cliente }}" readonly>
       </div>
 
@@ -38,12 +38,12 @@
       </div>
 
       <div class="input-new">
-        <label for="dt_ini" class="label">Data/Hora de início <strong class="notnull">*</strong>:</label>
+        <label for="dt_ini" class="label">Data/Hora de início <strong class="notnull">*</strong>: ({{ evento.data_inicio }})</label>
         <input type="datetime-local" name="dt_ini" id="dt_ini" class="input is-info" value="{{ evento.data_inicio }}" autocomplete="off">
       </div>
 
       <div class="input-new">
-        <label for="dt_fim" class="label">Data/Hora de fim <strong class="notnull">*</strong>:</label>
+        <label for="dt_fim" class="label">Data/Hora de fim <strong class="notnull">*</strong>: ({{ evento.data_fim }})</label>
         <input type="datetime-local" name="dt_fim" id="dt_fim" class="input is-info" value="{{ evento.data_fim }}" autocomplete="off">
       </div>
 
